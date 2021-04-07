@@ -94,5 +94,4 @@ const styles = StyleSheet.create({
   button: { borderWidth: 1, borderColor: '#D0D0D0', borderRadius: 5, width: '40%', height: 120, alignItems: 'center', justifyContent: 'space-evenly', backgroundColor: '#FFF' },
   imgButton: { width: 70, height: 70 },
   textButton: { fontSize: 16, fontWeight: 'bold' }
-
 })

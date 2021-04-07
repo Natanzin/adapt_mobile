@@ -47,7 +47,7 @@ const Reservas = (props: { navigation: StackNavigationProp<AppParamsList> }) => 
     LocaleConfig.defaultLocale = 'br';
 
     return (
-        <LinearGradient style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 10 }} colors={['#45bbeb', '#005685']}>
+        <LinearGradient style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 10 }} colors={['#FFFFFF', '#D0D0D0']}>
             <LinearGradient style={style.button} colors={['#f29f54', '#e17009']}>
                 <TouchableHighlight onPress={() => props.navigation.navigate('FormReservas')} underlayColor='#f29f54' style={{ borderRadius: 5 }} >
                     <Title style={style.textButton} children='Nova Reserva' />
