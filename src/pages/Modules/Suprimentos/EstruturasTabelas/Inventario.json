@@ -1,0 +1,22 @@
+{
+    "Inventario": [
+        {
+            "id": 1,
+            "codigo": "teste inventario",
+            "descricao": "teste inventario",
+            "data": "teste inventario",
+            "status": "teste inventario",
+            "responsavel": "teste inventario",
+            "observacao": "teste inventario"
+        },
+        {
+            "id": 2,
+            "codigo": "teste inventario",
+            "descricao": "teste inventario",
+            "data": "teste inventario",
+            "status": "teste inventario",
+            "responsavel": "teste inventario",
+            "observacao": "teste inventario"
+        }
+    ]
+}

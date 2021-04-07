@@ -1,0 +1,16 @@
+{
+    "reservas": [
+        {
+            "dataReserva": "2021-03-25",
+            "dots": {
+                "churrasqueira": true,
+                "gourmet": true,
+                "entregaMoveis": true,
+                "mudanca": true,
+                "internet": true,
+                "lavanderia": true,
+                "salaoFesta": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,106 @@
+{
+    "empresas": [
+        {
+            "codEmpresa": "100",
+            "nomeEmpresa": "PSE2 - Provedor de Soluções",
+            "endereco": "QNM 08 conunto B lote 10, sala 101",
+            "raioPonto": "30",
+            "geometry": {
+                "latitude": "-15,8039180",
+                "longitude": "-48,1167480"
+            },
+            "setores": [
+                {
+                    "codSetor": "1",
+                    "nomeSetor": "Tecnologia",
+                    "funcoes": [
+                        {
+                            "codFuncao": "1",
+                            "nomeFuncao": "Desenvolvedor"
+                        },
+                        {
+                            "codFuncao": "2",
+                            "nomeFuncao": "Analista"
+                        }
+                    ]
+                },
+                {
+                    "codSetor": "2",
+                    "nomeSetor": "Diretoria",
+                    "funcoes": [
+                        {
+                            "codFuncao": "1",
+                            "nomeFuncao": "Financeiro"
+                        },
+                        {
+                            "codFuncao": "2",
+                            "nomeFuncao": "Chefe"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "codEmpresa": "200",
+            "nomeEmpresa": "Casa  do Natan",
+            "endereco": "QNP 12 conjunto G casa 13",
+            "raioPonto": "20",
+            "geometry": {
+                "latitude": "-15,838800",
+                "longitude": "-48,118389"
+            },
+            "setores": [
+                {
+                    "codSetor": "1",
+                    "nomeSetor": "Tecnologia",
+                    "funcoes": [
+                        {
+                            "codFuncao": "1",
+                            "nomeFuncao": "Desenvolvedor"
+                        },
+                        {
+                            "codFuncao": "2",
+                            "nomeFuncao": "Analista"
+                        }
+                    ]
+                },
+                {
+                    "codSetor": "2",
+                    "nomeSetor": "Diretoria",
+                    "funcoes": [
+                        {
+                            "codFuncao": "1",
+                            "nomeFuncao": "Financeiro"
+                        },
+                        {
+                            "codFuncao": "2",
+                            "nomeFuncao": "Chefe"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "codEmpresa": "300",
+            "nomeEmpresa": "Casa do pai do Natan",
+            "endereco": "QNP 20 conjunto B casa 27",
+            "raioPonto": "40",
+            "geometry": {
+                "latitude": "-15,8467956",
+                "longitude": "-48,1113698"
+            },
+            "setores": [
+                {
+                    "codSetor": "",
+                    "nomeSetor": "",
+                    "funções": [
+                        {
+                            "codFuncao": "",
+                            "nomeFunção": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

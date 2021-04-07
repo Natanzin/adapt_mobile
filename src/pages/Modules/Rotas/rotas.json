@@ -1,0 +1,37 @@
+{
+    "locales":[
+        {
+            "id": 1,
+            "nome":"José Maria",
+            "endereço":"QNP 20 conjunto B casa 27",
+            "responsavel":"Lidiane Barbosa",
+            "proximaColeta": "15/03/2021",
+            "geometry":{
+                "latitude":-15.846924,
+                "longitude":-48.1114201
+            }
+        },
+        {
+            "id": 2,
+            "nome":"Natan Farias",
+            "endereço":"QNP 12 Conjunto G casa 13",
+            "responsavel":"Grupo Eficaz",
+            "proximaColeta": "15/03/2021",
+            "geometry":{
+                "latitude":-15.8393757,
+                "longitude":-48.1181082
+            }
+        },
+        {
+            "id": 3,
+            "nome":"Vitor Mesquita",
+            "endereço":"QNP 18 Conjunto E casa 18",
+            "responsavel":"Gilney Marques",
+            "proximaColeta": "15/03/2021",
+            "geometry":{
+                "latitude":-15.8440616,
+                "longitude":-48.1095365
+            }
+        }
+    ]
+}

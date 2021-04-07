@@ -1,0 +1,14 @@
+{
+    "Almoxarifado": [
+        {
+            "id": 1,
+            "codigo": "teste almoxarifado",
+            "descricao": "teste almoxarifado"
+        },
+        {
+            "id": 2,
+            "codigo": "teste almoxarifado",
+            "descricao": "teste almoxarifado"
+        }
+    ]
+}

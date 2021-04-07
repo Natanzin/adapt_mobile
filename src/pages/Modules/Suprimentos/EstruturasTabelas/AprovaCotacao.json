@@ -1,0 +1,26 @@
+{
+    "AprovaCotacao": [
+        {
+            "id": 1,
+            "cotacao": "teste aprova cotação",
+            "comprador": "teste aprova cotação",
+            "descricao": "teste aprova cotação",
+            "cotante": "teste aprova cotação",
+            "mercadoriaImposto": "teste aprova cotação",
+            "acresFrete": "teste aprova cotação",
+            "descontos": "teste aprova cotação",
+            "total": "teste aprova cotação"
+        },
+        {
+            "id": 2,
+            "cotacao": "teste aprova cotação",
+            "comprador": "teste aprova cotação",
+            "descricao": "teste aprova cotação",
+            "cotante": "teste aprova cotação",
+            "mercadoriaImposto": "teste aprova cotação",
+            "acresFrete": "teste aprova cotação",
+            "descontos": "teste aprova cotação",
+            "total": "teste aprova cotação"
+        }
+    ]
+}

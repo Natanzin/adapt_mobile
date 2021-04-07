@@ -1,0 +1,20 @@
+{
+    "Cotacao": [
+        {
+            "id":1,
+            "cotacao": "teste cotacao",
+            "descricao": "teste cotacao",
+            "comprador": "teste cotacao",
+            "dtEmissao": "teste cotacao",
+            "status": "teste cotacao"
+        },
+        {
+            "id":2,
+            "cotacao": "teste cotacao",
+            "descricao": "teste cotacao",
+            "comprador": "teste cotacao",
+            "dtEmissao": "teste cotacao",
+            "status": "teste cotacao"
+        }
+    ]
+}

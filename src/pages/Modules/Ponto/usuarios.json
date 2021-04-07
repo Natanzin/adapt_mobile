@@ -1,0 +1,56 @@
+{
+    "usuarios": [
+        {
+            "idUsuario":"1",
+            "nome": "Natan",
+            "codEmpresa": "100",
+            "horario": {
+                "hrEntrada": "08:00 AM",
+                "hrIntervalo": "00:00 PM",
+                "hrRetorno": "01:00 PM",
+                "hrSaida": "06:00 PM"
+            },
+            "codSetor":"1",
+            "codFuncao":"1"
+        },
+        {
+            "idUsuario":"2",
+            "nome": "Adalberto",
+            "codEmpresa": "200",
+            "horario": {
+                "hrEntrada": "08:00 AM",
+                "hrIntervalo": "00:00 PM",
+                "hrRetorno": "01:00 PM",
+                "hrSaida": "06:00 PM"
+            },
+            "codSetor":"2",
+            "codFuncao":"1"
+        },
+        {
+            "idUsuario":"3",
+            "nome": "Felipe",
+            "codEmpresa": "300",
+            "horario": {
+                "hrEntrada": "08:00 AM",
+                "hrIntervalo": "00:00 PM",
+                "hrRetorno": "01:00 PM",
+                "hrSaida": "06:00 PM"
+            },
+            "codSetor":"",
+            "codFuncao":""
+        },
+        {
+            "idUsuario":"4",
+            "nome": "Natan",
+            "codEmpresa": "200",
+            "horario": {
+                "hrEntrada": "08:00 AM",
+                "hrIntervalo": "00:00 PM",
+                "hrRetorno": "01:00 PM",
+                "hrSaida": "06:00 PM"
+            },
+            "codSetor":"2",
+            "codFuncao":"1"
+        },
+    ]
+}

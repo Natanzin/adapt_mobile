@@ -1,0 +1,26 @@
+{
+    "Recebimento": [
+        {
+            "id": 1,
+            "notaFiscal": "teste recebimento",
+            "tipoDocumento": "teste recebimento",
+            "fornecedor": "teste recebimento",
+            "dtEmissao": "teste recebimento",
+            "dtEntrada": "teste recebimento",
+            "lancamento": "teste recebimento",
+            "status": "teste recebimento",
+            "valorNota": "teste recebimento"
+        },
+        {
+            "id": 2,
+            "notaFiscal": "teste recebimento",
+            "tipoDocumento": "teste recebimento",
+            "fornecedor": "teste recebimento",
+            "dtEmissao": "teste recebimento",
+            "dtEntrada": "teste recebimento",
+            "lancamento": "teste recebimento",
+            "status": "teste recebimento",
+            "valorNota": "teste recebimento"
+        }
+    ]
+}

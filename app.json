@@ -1,0 +1,49 @@
+{
+  "name": "ADAPT",
+  "displayName": "ADAPT",
+  "expo": {
+    "name": "ADAPT",
+    "slug": "ADAPT",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "orientation": "portrait",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "backgroundColor": "",
+    "splash": {
+      "image": "",
+      "backgroundColor": "",
+      "resizeMode": ""
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content"
+    },
+    "android": {
+      "playStoreUrl": "",
+      "icon": "",
+      "adaptiveIcon": "",
+      "permissions": [
+        "CAMERA",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "NOTIFICATIONS"
+      ]
+    },
+    "ios": {
+      "appStoreUrl": "",
+      "icon": "",
+      "userInterfaceStyle": "automatic",
+      "userIcloudStorage": "true",
+      "infoPlist": {
+        "NSCameraUsageDescription": "O acesso da camera é solicitado para permitir o envio de documentos.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "A localidade será utilizada, quando concedida, para oferer produtos e serviços, bem como orientações sobre endereços físicos.",
+        "NSLocationAlwaysUsageDescription": "A localidade será utilizada, quando concedida, para oferer produtos e serviços, bem como orientações sobre endereços físicos.",
+        "NSLocationWhenInUseUsageDescription": "A localidade será utilizada, quando concedida, para oferer produtos e serviços, bem como orientações sobre endereços físicos.",
+    }
+    }
+  }
+}
