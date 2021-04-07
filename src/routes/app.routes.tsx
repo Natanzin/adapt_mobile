@@ -69,7 +69,7 @@ const AppRoutes: React.FC = (props) => {
     return (
         <AppStack.Navigator>
             {/** app */}
-            <AppStack.Screen name='Dashboard' component={Dashboard} />
+            <AppStack.Screen name='Dashboard' component={Dashboard} options={{ headerShown: false }} />
             {/** Módulo de Reservas */}
             <AppStack.Screen name='Reservas' component={Reservas} />
             <AppStack.Screen name='FormReservas' component={FormReservas} options={{ title: 'Nova Reserva' }} />
