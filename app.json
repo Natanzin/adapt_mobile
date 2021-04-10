@@ -8,7 +8,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "orientation": "landscape",
+    "orientation": "portrait",
     "platforms": [
       "android",
       "ios"
@@ -36,7 +36,6 @@
       "appStoreUrl": "",
       "icon": "",
       "userInterfaceStyle": "automatic",
-      "userIcloudStorage": "true",
       "infoPlist": {
         "NSCameraUsageDescription": "O acesso da camera é solicitado para permitir o envio de documentos.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "A localidade será utilizada, quando concedida, para oferer produtos e serviços, bem como orientações sobre endereços físicos.",

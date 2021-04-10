@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, Button } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, Button, Linking } from 'react-native';
 import { Divider, Modal, Title } from 'react-native-paper'
 import moment from 'moment';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
@@ -164,7 +164,7 @@ const FinalizaPonto = (props: any) => {
                     <View style={{ width: '100%', alignItems: 'center' }}>
                         <Image source={require('../../../assets/icon-success.png')} style={{ width: 100, height: 100 }} resizeMode={'contain'} />
                     </View>
-                    <Button title='FECHAR' onPress={() => { setVisible(false); props.navigation.navigate('Dashboard') }} />
+                    <Button title='FECHAR' onPress={() => { setVisible(false); Linking.openURL(`whatsapp://send?text=SUA_MENSAGEM_AQUI&abid=ID_DO_CONTATO`) }} />
                 </View>
             </Modal>
         </>
