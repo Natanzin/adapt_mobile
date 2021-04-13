@@ -22,7 +22,7 @@ const Login: React.FC = () => {
             <View style={style.content}>
                 <View style={style.viewLogo}>
                     <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={style.viewContent}>
-                        <Image source={require('../../assets/logoAdaptAzul.png')} resizeMode='contain' style={style.logo} />
+                        <Image source={require('../../assets/logo-login.png')} resizeMode='contain' style={style.logo} />
                     </LinearGradient>
                 </View>
                 <LinearGradient colors={['#45BBEB', '#005685']} style={style.viewContent}>
@@ -110,7 +110,7 @@ const style = StyleSheet.create({
     copy: { color: '#fff', fontSize: 8, textAlign: 'center' },
     viewLogo: { flex: 1, backgroundColor: '#e9e9e9', width: '100%', alignItems: 'center', justifyContent: 'center', shadowColor: "#000", shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.37, shadowRadius: 7.49, elevation: 12 },
     viewContent: { flex: 4, width: '100%', alignItems: 'center', justifyContent: 'space-around' },
-    logo: { width: '100%', height: '100%', marginTop: 30 },
+    logo: { width: '80%', height: '80%', marginTop: 30 },
     textOption: { color: '#fff', fontSize: 9, paddingHorizontal: 5, marginVertical: 10 },
     viewModal: { backgroundColor: '#fff', width: '90%', borderRadius: 10, paddingVertical: 10, paddingHorizontal: 15, alignItems: 'center', justifyContent: 'center', borderTopWidth: 15, borderTopColor: '#005685' },
     inputModal: { height: 40, width: '100%', borderColor: '#ccc', borderWidth: 1, backgroundColor: '#fff', textAlign: 'center', color: '#000', borderRadius: 5 },

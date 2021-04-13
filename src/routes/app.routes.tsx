@@ -31,6 +31,12 @@ import Ponto from '../pages/Modules/Ponto'
 import CameraPonto from '../pages/Modules/Ponto/camera'
 import FinalizaPOnto from '../pages/Modules/Ponto/finalizaPonto'
 
+//module Fiscalização de condomínio
+import FiscalCondom from '../pages/Modules/FiscalCondom'
+import CameraFiscal from '../pages/Modules/FiscalCondom/cameraFiscal'
+import FormularioFiscal from '../pages/Modules/FiscalCondom/formulário'
+import FinalizarFiscalizacao from '../pages/Modules/FiscalCondom/finalizar'
+
 export type AppParamsList = {
     //APP
     Dashboard: undefined | object
@@ -61,6 +67,13 @@ export type AppParamsList = {
     Ponto: undefined | object
     CameraPonto: undefined | object
     FinalizaPonto: undefined | object
+    
+    //module Fiscalização de condominio
+    FiscalCondom: undefined | object
+    CameraFiscal: undefined | object
+    FormularioFiscal: undefined | object
+    FinalizarFiscalizacao: undefined | object
+    
 }
 
 const AppStack = createStackNavigator<AppParamsList>();
@@ -93,6 +106,11 @@ const AppRoutes: React.FC = (props) => {
             <AppStack.Screen name='Ponto' component={Ponto} options={{ title: 'Bater Ponto' }} />
             <AppStack.Screen name='CameraPonto' component={CameraPonto} options={{ title: 'Bater Ponto' }} />
             <AppStack.Screen name='FinalizaPonto' component={FinalizaPOnto} options={{ title: 'Bater Ponto' }} />
+            {/** Módulo Fiscalização de condomínio */}
+            <AppStack.Screen name='FiscalCondom' component={FiscalCondom} options={{ title: 'Fiscalizar Condomínio' }} />
+            <AppStack.Screen name='CameraFiscal' component={CameraFiscal} options={{ title: 'Fiscalizar Condomínio' }} />
+            <AppStack.Screen name='FormularioFiscal' component={FormularioFiscal} options={{ title: 'Preencher Ocorrência' }} />
+            <AppStack.Screen name='FinalizarFiscalizacao' component={FinalizarFiscalizacao} options={{ title: 'Finalizar Fiscalização' }} />
         </AppStack.Navigator>
     )
 }
