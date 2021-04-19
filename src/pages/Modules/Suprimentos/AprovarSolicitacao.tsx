@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-na
 import { Card, Divider, Paragraph, Title } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
 import aprovaSolicitacao from './EstruturasTabelas/AprovaSolicitacao.json'
+import api from '../../../services/api'
 
 const Solicitacao: React.FC = () => {
     const item = aprovaSolicitacao?.AprovaSolicitacao

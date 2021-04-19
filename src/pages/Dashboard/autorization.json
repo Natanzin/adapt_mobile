@@ -1,0 +1,24 @@
+{
+    "autorization": [
+        {
+            "codEmpresa": "100",
+            "modules": {
+                "suprimentos": true,
+                "rotas": false,
+                "reservas": false,
+                "ponto": false,
+                "fiscalizarCondominio": true
+            }
+        },
+        {
+            "codEmpresa": "200",
+            "modules": {
+                "suprimentos": true,
+                "rotas": true,
+                "reservas": false,
+                "ponto": false,
+                "fiscalizarCondominio": true
+            }
+        }
+    ]
+}

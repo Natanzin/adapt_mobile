@@ -9,12 +9,9 @@ const Ponto = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     //recebe a lista com todos os usuarios que utilizam esse modulo
     const [listUsuarios, setListUsuarios] = useState(usuarios?.usuarios)
     const { user } = useAuth()
-    console.log(user)
-
+    
     //retorna as informações do usuário 
     const usuario = listUsuarios.find((obj) => obj.codEmpresa === user?.codEmpresa && obj.nome === user?.usuario)
-    console.log(usuario)
-
 
     return (
         <View style={{ flex: 1, justifyContent: 'space-evenly', paddingHorizontal: 15 }}>

@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-na
 import { Card, Divider } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
 import aprovaCotacao from './EstruturasTabelas/AprovaCotacao.json'
+import api from '../../../services/api'
 
 const AprovCotacao = (props: any) => {
     const item = aprovaCotacao?.AprovaCotacao

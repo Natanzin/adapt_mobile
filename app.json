@@ -22,9 +22,6 @@
       "barStyle": "light-content"
     },
     "android": {
-      "playStoreUrl": "",
-      "icon": "",
-      "adaptiveIcon": "",
       "permissions": [
         "CAMERA",
         "ACCESS_COARSE_LOCATION",
@@ -33,8 +30,6 @@
       ]
     },
     "ios": {
-      "appStoreUrl": "",
-      "icon": "",
       "userInterfaceStyle": "automatic",
       "infoPlist": {
         "NSCameraUsageDescription": "O acesso da camera é solicitado para permitir o envio de documentos.",

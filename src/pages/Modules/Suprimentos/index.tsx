@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet, TouchableHighlight, ScrollView } from 'r
 import { LinearGradient } from 'expo-linear-gradient'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
+import api from '../../../services/api'
 
 const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
   return (

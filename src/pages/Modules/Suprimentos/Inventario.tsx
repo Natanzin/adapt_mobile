@@ -3,8 +3,7 @@ import { Text, View, StyleSheet, ScrollView } from 'react-native'
 import { Card } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
 import inventario from './EstruturasTabelas/Inventario.json'
-
-// import { Container } from './styles';
+import api from '../../../services/api'
 
 const Inventario = () => {
   const item = inventario?.Inventario

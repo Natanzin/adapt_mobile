@@ -4,8 +4,7 @@ import { Card, Divider, Paragraph, Title } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
 import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome5'
 import aprovaPedido from './EstruturasTabelas/AprovaPedido.json'
-
-// import { Container } from './styles';
+import api from '../../../services/api'
 
 const AprovPedido = (props: any) => {
     const item = aprovaPedido?.AprovaPedido

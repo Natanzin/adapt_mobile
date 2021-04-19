@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, TouchableHighlight, TextInput, Text, Image, Button } from 'react-native'
 import { Title, Portal, Modal, Provider } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useAuth } from '../../contexts/auth'
+import api from '../../services/api'
 
-const Login: React.FC = () => {
+const Login = (props: any) => {
 
     const [usuario, setUsuario] = useState('')
     const [senha, setSenha] = useState('')
-    const [codEmpresa, setCodEmpresa] = useState('')
+    //const [codEmpresa, setCodEmpresa] = useState('')
     const [visible, setVisible] = useState(false)
+
+    async function efetuarLogin() {
+        const req = await api.get(`/adapt/login/${usuario}/pass/${senha}`)
+    }
 
     const { signIn } = useAuth()
 
@@ -42,13 +47,13 @@ const Login: React.FC = () => {
                             secureTextEntry={true}
                             placeholderTextColor='#D0D0D0'
                         />
-                        <TextInput
+                        {/*<TextInput
                             placeholder='Código de Empresa'
                             style={[style.input, { marginTop: 20 }]}
                             onChangeText={text => setCodEmpresa(text)}
                             value={codEmpresa}
                             placeholderTextColor='#D0D0D0'
-                        />
+                        />*/}
                     </View>
                     <LinearGradient colors={['#F29F54', '#E17009']} style={style.button}>
                         <TouchableHighlight onPress={handleSignIn} underlayColor='#F29F54' style={{ borderRadius: 5 }}>

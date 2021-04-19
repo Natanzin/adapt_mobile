@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, ScrollView } from 'react-native'
 import { Card } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
 import estoque from './EstruturasTabelas/Estoque.json'
+import api from '../../../services/api'
 
 // import { Container } from './styles';
 

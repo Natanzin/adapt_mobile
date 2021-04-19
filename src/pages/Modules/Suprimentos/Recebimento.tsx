@@ -3,8 +3,7 @@ import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-na
 import { Card, Divider } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
 import recebimento from './EstruturasTabelas/Recebimento.json'
-
-// import { Container } from './styles';
+import api from '../../../services/api'
 
 const Recebimento = () => {
     const item = recebimento?.Recebimento

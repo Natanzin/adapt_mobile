@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 interface Response {
     token: string
     user: {
@@ -6,6 +8,8 @@ interface Response {
         codEmpresa: string
     }
 }
+
+//const user = axios.get(`/adapt/login/${usuario}/pass/${senha}`)
 
 export function SignIn(): Promise<Response> {
     return new Promise(resolve => {

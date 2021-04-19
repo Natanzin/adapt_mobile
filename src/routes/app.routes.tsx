@@ -109,7 +109,7 @@ const AppRoutes: React.FC = (props) => {
             {/** Módulo Fiscalização de condomínio */}
             <AppStack.Screen name='FiscalCondom' component={FiscalCondom} options={{ title: 'Fiscalizar Condomínio' }} />
             <AppStack.Screen name='CameraFiscal' component={CameraFiscal} options={{ title: 'Fiscalizar Condomínio' }} />
-            <AppStack.Screen name='FormularioFiscal' component={FormularioFiscal} options={{ title: 'Preencher Ocorrência' }} />
+            <AppStack.Screen name='FormularioFiscal' component={FormularioFiscal} options={{ title: 'Checklist' }} />
             <AppStack.Screen name='FinalizarFiscalizacao' component={FinalizarFiscalizacao} options={{ title: 'Finalizar Fiscalização' }} />
         </AppStack.Navigator>
     )

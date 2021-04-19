@@ -3,8 +3,7 @@ import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-na
 import { Card, Divider } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
 import cotacao from './EstruturasTabelas/Cotacao.json'
-
-// import { Container } from './styles';
+import api from '../../../services/api'
 
 const Cotacao = () => {
     const item = cotacao?.Cotacao

@@ -10,8 +10,6 @@ const CameraPonto = (props: any) => {
     //recebe as informações do usuário
     const usuario = JSON.parse(props?.route?.params?.usuario)
 
-    //useEffect(() => console.log(usuario), [])
-
     //Permissão de uso da câmera
     useEffect(() => {
         (async () => {

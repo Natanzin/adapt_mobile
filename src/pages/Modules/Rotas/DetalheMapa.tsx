@@ -14,13 +14,10 @@ const DetalheMapa = (props: { navigation: StackNavigationProp<AppParamsList> }) 
             {locale.map(item => {
                 return (
                     <View key={item.id}>
-                        <Text children={'Endereço: ' + `${item.endereço}`} />
+                        <Text children={`Endereço: ${item.endereço}`} />
                         <Text children={'Nome: ' + `${item.nome}`} />
                         <Text children={'Responsável: ' + `${item.responsavel}`} />
                         <Text children={'Próxima Coleta: ' + `${item.proximaColeta}`} />
-                        <Button title="Localização" onPress={() => { 
-                            props.navigation.navigate('Mapa',{ 'latitude': item.geometry.latitude, 'longitude': item.geometry.longitude })
-                         }} />
                     </View>
                 );
             })}
