@@ -15,7 +15,7 @@
     ],
     "splash": {
       "image": "./src/assets/logo-login.png",
-      "backgroundColor": "#D0D0D0",
+      "backgroundColor": "#FFFFFF",
       "resizeMode": "contain"
     },
     "androidStatusBar": {

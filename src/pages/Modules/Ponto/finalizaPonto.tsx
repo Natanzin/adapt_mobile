@@ -164,7 +164,7 @@ const FinalizaPonto = (props: any) => {
                     <View style={{ width: '100%', alignItems: 'center' }}>
                         <Image source={require('../../../assets/icon-success.png')} style={{ width: 100, height: 100 }} resizeMode={'contain'} />
                     </View>
-                    <Button title='FECHAR' onPress={() => { setVisible(false); Linking.openURL(`whatsapp://send?text=SUA_MENSAGEM_AQUI&abid=ID_DO_CONTATO`) }} />
+                    <Button title='FECHAR' onPress={() => { setVisible(false); props.navigation.navigate('Dashboard') }} />
                 </View>
             </Modal>
         </>

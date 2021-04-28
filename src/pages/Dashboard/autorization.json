@@ -1,7 +1,27 @@
 {
     "autorization": [
         {
-            "codEmpresa": "100",
+            "ORG_IN_CODIGO": "18004",
+            "modules": {
+                "suprimentos": true,
+                "rotas": false,
+                "reservas": false,
+                "ponto": false,
+                "fiscalizarCondominio": false
+            }
+        },
+        {
+            "ORG_IN_CODIGO": "8369",
+            "modules": {
+                "suprimentos": true,
+                "rotas": true,
+                "reservas": true,
+                "ponto": true,
+                "fiscalizarCondominio": true
+            }
+        },
+        {
+            "ORG_IN_CODIGO": "3795",
             "modules": {
                 "suprimentos": true,
                 "rotas": false,
@@ -11,12 +31,12 @@
             }
         },
         {
-            "codEmpresa": "200",
+            "ORG_IN_CODIGO": "2412",
             "modules": {
                 "suprimentos": true,
                 "rotas": true,
-                "reservas": false,
-                "ponto": false,
+                "reservas": true,
+                "ponto": true,
                 "fiscalizarCondominio": true
             }
         }

@@ -1,27 +1,21 @@
-import axios from 'axios'
-
-interface Response {
+export type Response = {
     token: string
     user: {
-        usuario: string
-        senha: string
-        codEmpresa: string
+        USU_ST_LOGIN: string
+        USU_IN_CODIGO: string
+        ORG_IN_CODIGO: string
     }
 }
 
-//const user = axios.get(`/adapt/login/${usuario}/pass/${senha}`)
-
-export function SignIn(): Promise<Response> {
+export function SignIn(usuarioLogin: Response): Promise<Response> {
     return new Promise(resolve => {
-        setTimeout(() => {
-            resolve({
-                token: 'açskdfjbvfbipasdfjvisdjviopjsadnfvpijasdbnvipujn',
-                user: {
-                    usuario: 'Natan',
-                    senha: '123456',
-                    codEmpresa: '200'
-                }
-            })
-        }, 1000)
+        resolve({
+            token: `${usuarioLogin.token}`,
+            user: {
+                USU_ST_LOGIN: `${usuarioLogin.user.USU_ST_LOGIN}`,
+                USU_IN_CODIGO: `${usuarioLogin.user.USU_IN_CODIGO}`,
+                ORG_IN_CODIGO: `${usuarioLogin.user.ORG_IN_CODIGO}`
+            }
+        })
     })
 }

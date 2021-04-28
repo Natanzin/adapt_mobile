@@ -3,6 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 //APP
 import Dashboard from '../pages/Dashboard'
+import Configuracoes from '../pages/Dashboard/Configuracoes/configuracoes'
+import Organizacoes from '../pages/Dashboard/Configuracoes/organizacoes'
 
 //Module Reservas
 import Reservas from '../pages/Modules/Reservas/index'
@@ -25,6 +27,7 @@ import Recebimento from '../pages/Modules/Suprimentos/Recebimento'
 import Inventario from '../pages/Modules/Suprimentos/Inventario'
 import Almoxarifado from '../pages/Modules/Suprimentos/Almoxarifado'
 import Estoque from '../pages/Modules/Suprimentos/Estoque'
+import MovimentoEstoque from '../pages/Modules/Suprimentos/movimentoEstoque'
 
 //module Rotas
 import Ponto from '../pages/Modules/Ponto'
@@ -40,6 +43,8 @@ import FinalizarFiscalizacao from '../pages/Modules/FiscalCondom/finalizar'
 export type AppParamsList = {
     //APP
     Dashboard: undefined | object
+    Configuracoes: undefined | object
+    Organizacoes: undefined | object
 
     //module Reserva
     Reservas: undefined | object
@@ -62,18 +67,19 @@ export type AppParamsList = {
     Recebimento: undefined | object
     Almoxarifado: undefined | object
     Estoque: undefined | object
-    
+    MovimentoEstoque: undefined | object
+
     //module ponto
     Ponto: undefined | object
     CameraPonto: undefined | object
     FinalizaPonto: undefined | object
-    
+
     //module Fiscalização de condominio
     FiscalCondom: undefined | object
     CameraFiscal: undefined | object
     FormularioFiscal: undefined | object
     FinalizarFiscalizacao: undefined | object
-    
+
 }
 
 const AppStack = createStackNavigator<AppParamsList>();
@@ -83,6 +89,8 @@ const AppRoutes: React.FC = (props) => {
         <AppStack.Navigator>
             {/** app */}
             <AppStack.Screen name='Dashboard' component={Dashboard} options={{ headerShown: false }} />
+            <AppStack.Screen name='Configuracoes' component={Configuracoes} options={{ title: 'Configurações' }} />
+            <AppStack.Screen name='Organizacoes' component={Organizacoes} options={{ title: 'Organizações' }} />
             {/** Módulo de Reservas */}
             <AppStack.Screen name='Reservas' component={Reservas} />
             <AppStack.Screen name='FormReservas' component={FormReservas} options={{ title: 'Nova Reserva' }} />
@@ -102,6 +110,7 @@ const AppRoutes: React.FC = (props) => {
             <AppStack.Screen name='Recebimento' component={Recebimento} />
             <AppStack.Screen name='Almoxarifado' component={Almoxarifado} />
             <AppStack.Screen name='Estoque' component={Estoque} />
+            <AppStack.Screen name='MovimentoEstoque' component={MovimentoEstoque} options={{ title: 'Movimentação do Estoque' }} />
             {/** Módulo de Ponto */}
             <AppStack.Screen name='Ponto' component={Ponto} options={{ title: 'Bater Ponto' }} />
             <AppStack.Screen name='CameraPonto' component={CameraPonto} options={{ title: 'Bater Ponto' }} />

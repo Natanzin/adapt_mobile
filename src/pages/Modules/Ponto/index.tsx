@@ -11,7 +11,7 @@ const Ponto = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     const { user } = useAuth()
     
     //retorna as informações do usuário 
-    const usuario = listUsuarios.find((obj) => obj.codEmpresa === user?.codEmpresa && obj.nome === user?.usuario)
+    const usuario = listUsuarios.find((obj) => obj.codEmpresa === user?.ORG_IN_CODIGO && obj.nome === user?.USU_ST_LOGIN) 
 
     return (
         <View style={{ flex: 1, justifyContent: 'space-evenly', paddingHorizontal: 15 }}>

@@ -1,19 +1,20 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import * as auth from '../services/auth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Response } from '../services/auth'
 //import api from '../services/api';
 
-interface User {
-    usuario: string
-    senha: string
-    codEmpresa: string
-} 
+export type User = {
+    USU_ST_LOGIN: string
+    USU_IN_CODIGO: string
+    ORG_IN_CODIGO: string
+}
 
 interface AuthContextData {
     signed: boolean
     user: User | null
     loading: boolean
-    signIn(): Promise<void>
+    signIn(usuarioLogin: Response): Promise<void>
     signOut(): void
 }
 
@@ -24,30 +25,12 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        async function loadStoragedData() {
-            const storagedUser = await AsyncStorage.getItem('@Adapt:user')
-            const storagedToken = await AsyncStorage.getItem('@Adapt:token')
-
-            if (storagedUser && storagedToken) {
-                //utilizar essa função quando tiver API para que o token seja utilizado em todas as requisições HTTP
-                //api.defaults.headers['Autorization'] = `Bearer ${storagedToken}`
-                setUser(JSON.parse(storagedUser))
-                setLoading(false)
-            }
-        }
-        loadStoragedData()
-    }, [])
-
-    async function signIn() {
-        const response = await auth.SignIn()
+    async function signIn(usuarioLogin: Response) {
+        const response = await auth.SignIn(usuarioLogin)
         setUser(response.user)
 
         //utilizar essa função quando tiver API para que o token seja utilizado em todas as requisições HTTP
         //api.defaults.headers['Autorization'] = `Bearer ${response.token}`
-        
-        await AsyncStorage.setItem('@Adapt:user', JSON.stringify(response.user))
-        await AsyncStorage.setItem('@Adapt:token', response.token)
     }
 
     function signOut() {
@@ -61,7 +44,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     )
 }
 
-export function useAuth(){
-const context = useContext(AuthContext)
-return context
+export function useAuth() {
+    const context = useContext(AuthContext)
+    return context
 }
