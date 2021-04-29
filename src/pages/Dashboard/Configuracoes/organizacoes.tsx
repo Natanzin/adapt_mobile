@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
 import api from '../../../services/api'
@@ -8,61 +8,70 @@ import { Divider } from 'react-native-paper';
 
 const Organizacoes = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     const { user } = useAuth()
-    const [org, setOrg] = useState([])
+    const [org, setOrg] = useState(undefined)
     useEffect(() => {
         (async () => {
             const { data } = await api.get(`/adapt/agente_usuario_org/${user?.USU_IN_CODIGO}`)
             setOrg(data)
+            //console.log(data)
         })()
-    }, [2])
+    }, [])
     return (
-        <>
-            <ScrollView style={{ flex: 1, width: '100%' }}>
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    {org.map(item => {
-                        return (
-                            <View key={item.ORG_IN_CODIGO} style={styles.viewItem}>
-                                <View style={styles.viewText}>
-                                    <View style={[styles.viewTextItem, styles.itemLeft]}>
-                                        <Text children='Código:' style={styles.textTitle} />
-                                    </View>
-                                    <View style={[styles.viewTextItem, styles.itemRight]}>
-                                        <Text children={`${item.ORG_IN_CODIGO}`} style={styles.text} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                    </View>
-                                </View>
-                                <Divider />
-                                <View style={styles.viewText}>
-                                    <View style={[styles.viewTextItem, styles.itemLeft]}>
-                                        <Text children='Nome:' style={styles.textTitle} />
-                                    </View>
-                                    <View style={[styles.viewTextItem, styles.itemRight]}>
-                                        <Text children={`${item.ORG_ST_NOME}`} style={styles.text} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                    </View>
-                                </View>
-                                <Divider />
-                                <View style={styles.viewText}>
-                                    <View style={[styles.viewTextItem, styles.itemLeft]}>
-                                        <Text children='Perfil:' style={styles.textTitle} />
-                                    </View>
-                                    <View style={[styles.viewTextItem, styles.itemRight]}>
-                                        <Text children={`${item.PAI_ST_DESCRICAO}`} style={styles.text} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                    </View>
-                                </View>
-                                <Divider />
-                                <View style={styles.viewText}>
-                                    <View style={[styles.viewTextItem, styles.itemLeft]}>
-                                        <Text children='Status:' style={styles.textTitle} />
-                                    </View>
-                                    <View style={[styles.viewTextItem, styles.itemRight]}>
-                                        <Text children={`${item.USU_STATUS}`} style={styles.text} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                    </View>
-                                </View>
-                            </View>
-                        )
-                    })}
+        org === undefined ?
+            <>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <ActivityIndicator size={50 || "large"} color="#005685" />
+                    <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
                 </View>
-            </ScrollView>
-        </>
+            </>
+            :
+            <>
+                <ScrollView style={{ flex: 1, width: '100%' }}>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                        {org?.map(item => {
+                            return (
+                                <View key={item.ORG_IN_CODIGO} style={styles.viewItem}>
+                                    <View style={styles.viewText}>
+                                        <View style={[styles.viewTextItem, styles.itemLeft]}>
+                                            <Text children='Código:' style={styles.textTitle} />
+                                        </View>
+                                        <View style={[styles.viewTextItem, styles.itemRight]}>
+                                            <Text children={`${item.ORG_IN_CODIGO}`} style={styles.text} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                        </View>
+                                    </View>
+                                    <Divider />
+                                    <View style={styles.viewText}>
+                                        <View style={[styles.viewTextItem, styles.itemLeft]}>
+                                            <Text children='Nome:' style={styles.textTitle} />
+                                        </View>
+                                        <View style={[styles.viewTextItem, styles.itemRight]}>
+                                            <Text children={`${item.ORG_ST_NOME}`} style={styles.text} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                        </View>
+                                    </View>
+                                    <Divider />
+                                    <View style={styles.viewText}>
+                                        <View style={[styles.viewTextItem, styles.itemLeft]}>
+                                            <Text children='Perfil:' style={styles.textTitle} />
+                                        </View>
+                                        <View style={[styles.viewTextItem, styles.itemRight]}>
+                                            <Text children={`${item.PAI_ST_DESCRICAO}`} style={styles.text} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                        </View>
+                                    </View>
+                                    <Divider />
+                                    <View style={styles.viewText}>
+                                        <View style={[styles.viewTextItem, styles.itemLeft]}>
+                                            <Text children='Status:' style={styles.textTitle} />
+                                        </View>
+                                        <View style={[styles.viewTextItem, styles.itemRight]}>
+                                            <Text children={`${item.USU_STATUS}`} style={styles.text} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                        </View>
+                                    </View>
+                                </View>
+                            )
+                        })}
+                    </View>
+                </ScrollView>
+            </>
     );
 }
 

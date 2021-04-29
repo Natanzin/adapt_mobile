@@ -15,6 +15,7 @@ const Login = (props: any) => {
     const [visibleError, setVisibleError] = useState(false)
     const [visibleErrorCarac, setVisibleErrorCarac] = useState(false)
 
+    //signIn(userFake) => utilizar essa funação quando a API estiver fora do ar para fazer o login
     const userFake = {
         'token': 'nananananananana',
         'user': {
@@ -31,7 +32,7 @@ const Login = (props: any) => {
             setLoading(true)
             var senhaCrip = md5(senha)
             const { data } = await api.get(`/adapt/login/${usuario}/pass/${senhaCrip}`)
-            console.log(data)
+            //console.log(data)
             var usuarioLogin = {
                 'token': 'nananananananana',
                 'user': {

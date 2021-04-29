@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Text, View, StyleSheet, ScrollView, TouchableHighlight, ActivityIndicator } from 'react-native'
-import { Card, Divider, Portal, Modal, Provider } from 'react-native-paper'
+import { Card, Snackbar, Divider } from 'react-native-paper'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -10,22 +10,35 @@ import { useAuth } from '../../../contexts/auth'
 const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     const { user } = useAuth()
     const [produtos, setProdutos] = useState(undefined)
+    const [movimento, setMovimento] = useState(false)
 
     useEffect(() => {
         (async () => {
-            const { data } = await api.get(`/adapt/estoque_lista/${user?.ORG_IN_CODIGO}/USU/${user?.USU_IN_CODIGO}`)
-            setProdutos(data)
+            try{
+                const { data } = await api.get(`/adapt/estoque_lista/${user?.ORG_IN_CODIGO}/USU/${user?.USU_IN_CODIGO}`)
+                setProdutos(data)
+            }catch(e){
+                console.log('Deu ruim: ' + e)
+                props.navigation.goBack()
+            }
+            //console.log(data)
         })()
     }, [])
+
+    useEffect(() => {
+        if (props?.route?.params?.movimento === 'ok') {
+            setMovimento(true)
+        }
+    }, [])
+
     return (
-        produtos === undefined ?
-            <>
+        <>
+            {produtos === undefined ?
                 <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <ActivityIndicator size={50 || "large"} color="#005685" />
                     <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
                 </LinearGradient>
-            </> :
-            <>
+                :
                 <LinearGradient style={{ flex: 1 }} colors={['#FFFFFF', '#D0D0D0']}>
                     <ScrollView style={{ flex: 1 }}>
                         {produtos?.map(item => (
@@ -35,7 +48,8 @@ const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
                                 onPress={() => { props.navigation.navigate('MovimentoEstoque', { 'itemId': `${item.ITI_IN_CODIGO}`, 'itemNome': `${item.ITE_ST_DESCRICAO}`, 'itemQtd': `${item.QUANTIDADE}`, 'almoxId': `${item.ALI_IN_CODIGO}` }) }}
                             >
                                 <Card style={style.card} >
-                                    <Text children={`Ítem: ${item.ITE_DESCRICAO}`} style={style.textTitle} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                    <Text children={`${item.ITE_ST_DESCRICAO}`} style={style.textTitle} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                    <Divider style={{ backgroundColor: '#005685', marginHorizontal: 8 }} />
                                     <Card.Content>
                                         <View style={style.viewText}>
                                             <Text style={{ fontWeight: 'bold' }}>Almoxarifado: </Text>
@@ -47,7 +61,7 @@ const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
                                         </View>
                                         <View style={style.viewText}>
                                             <Text style={{ fontWeight: 'bold' }}>Unidade: </Text>
-                                            <Text>{item.UNI_CH_SIGLA}</Text>
+                                            <Text>{item.UNI_CH_SIGLA || ' - '}</Text>
                                         </View>
                                         <View style={style.viewText}>
                                             <Text style={{ fontWeight: 'bold' }}>Quantidade: </Text>
@@ -59,7 +73,16 @@ const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
                         ))}
                     </ScrollView>
                 </LinearGradient>
-            </>
+            }
+            <Snackbar
+                visible={movimento}
+                onDismiss={() => { setMovimento(!movimento) }}
+                duration={3500}
+                style={{ backgroundColor: '#005500', borderTopWidth: 8, borderTopColor: '#00CC00' }}
+            >
+                Movimento de estoque realizado com sucesso!
+            </Snackbar>
+        </>
     );
 }
 

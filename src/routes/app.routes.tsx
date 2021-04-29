@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Dashboard from '../pages/Dashboard'
 import Configuracoes from '../pages/Dashboard/Configuracoes/configuracoes'
 import Organizacoes from '../pages/Dashboard/Configuracoes/organizacoes'
+import Sobre from '../pages/Dashboard/Configuracoes/Sobre'
 
 //Module Reservas
 import Reservas from '../pages/Modules/Reservas/index'
@@ -45,6 +46,7 @@ export type AppParamsList = {
     Dashboard: undefined | object
     Configuracoes: undefined | object
     Organizacoes: undefined | object
+    Sobre: undefined | object
 
     //module Reserva
     Reservas: undefined | object
@@ -91,6 +93,7 @@ const AppRoutes: React.FC = (props) => {
             <AppStack.Screen name='Dashboard' component={Dashboard} options={{ headerShown: false }} />
             <AppStack.Screen name='Configuracoes' component={Configuracoes} options={{ title: 'Configurações' }} />
             <AppStack.Screen name='Organizacoes' component={Organizacoes} options={{ title: 'Organizações' }} />
+            <AppStack.Screen name='Sobre' component={Sobre} options={{ title: 'Sobre' }} />
             {/** Módulo de Reservas */}
             <AppStack.Screen name='Reservas' component={Reservas} />
             <AppStack.Screen name='FormReservas' component={FormReservas} options={{ title: 'Nova Reserva' }} />

@@ -3,14 +3,14 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
 import { View, Text, StyleSheet, TouchableHighlight, TextInput, Image, ScrollView } from 'react-native';
 import { Divider, RadioButton, Title, Modal, Portal, Provider } from 'react-native-paper';
-import { useAuth } from '../../../contexts/auth'
+//import { useAuth } from '../../../contexts/auth'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Camera } from 'expo-camera';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 
 const FormularioFiscal = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
-  const { user } = useAuth()
+  //const { user } = useAuth()
   const [flashCamera, setFlashCamera] = useState(Camera.Constants.FlashMode.off)
   const [typeCamera, setTypeCamera] = useState(Camera.Constants.Type.back)
   const photoUri = props?.route?.params?.foto

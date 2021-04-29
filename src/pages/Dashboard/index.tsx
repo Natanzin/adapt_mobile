@@ -74,7 +74,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             </View>
                                         </>
                                     </TouchableHighlight>
-                                }{rota &&
+                                }{/*rota &&
                                     <TouchableHighlight onPress={() => props.navigation.navigate('Rotas')} style={styles.button} underlayColor='#d0d0d0'>
                                         <>
                                             <View style={styles.viewButton}>
@@ -85,7 +85,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             </View>
                                         </>
                                     </TouchableHighlight>
-                                }{reserva &&
+                                */}{/*reserva &&
                                     <TouchableHighlight onPress={() => props.navigation.navigate('Reservas')} style={styles.button} underlayColor='#d0d0d0'>
                                         <>
                                             <View style={styles.viewButton}>
@@ -96,7 +96,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             </View>
                                         </>
                                     </TouchableHighlight>
-                                }{moduleAutorization?.modules.ponto &&
+                                */}{/* moduleAutorization?.modules.ponto &&
                                     <TouchableHighlight onPress={() => props.navigation.navigate('Ponto')} style={styles.button} underlayColor='#d0d0d0'>
                                         <>
                                             <View style={styles.viewButton}>
@@ -107,7 +107,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             </View>
                                         </>
                                     </TouchableHighlight>
-                                }{moduleAutorization?.modules.fiscalizarCondominio &&
+                                */}{/* moduleAutorization?.modules.fiscalizarCondominio &&
                                     <TouchableHighlight onPress={() => props.navigation.navigate('FiscalCondom')} style={styles.button} underlayColor='#d0d0d0'>
                                         <>
                                             <View style={styles.viewButton}>
@@ -118,14 +118,14 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             </View>
                                         </>
                                     </TouchableHighlight>
-                                }
-                                <TouchableHighlight onPress={handleSignOut} style={styles.button} underlayColor='#d0d0d0'>
+                                */}
+                                <TouchableHighlight onPress={handleSignOut} style={[styles.button,{ backgroundColor: 'rgba(00, 56, 85, 0.8)' }]} underlayColor='#d0d0d0'>
                                     <>
                                         <View style={styles.viewButton}>
-                                            <Image source={require('../../assets/icon-logout.png')} style={styles.imgButton} resizeMode={'contain'} />
+                                            <Image source={require('../../assets/icon-logout-branco.png')} style={styles.imgButton} resizeMode={'contain'} />
                                         </View>
                                         <View style={styles.viewButton}>
-                                            <Text children='Sair' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                            <Text children='SAIR DO APP' style={[styles.textButton, { color: '#FFF'}]} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                                         </View>
                                     </>
                                 </TouchableHighlight>

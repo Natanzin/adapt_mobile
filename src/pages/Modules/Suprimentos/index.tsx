@@ -10,16 +10,16 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
   const { user } = useAuth()
   const [permissoes, setPermissoes] = useState(undefined)
 
-  const [solicitacao, setSolicitacao] = useState(undefined)
-  const [solicitacaoAprov, setSolicitacaoAprov] = useState(undefined)
-  const [cotacao, setCotacao] = useState(undefined)
-  const [cotacaoAprov, setCotacaoAprov] = useState(undefined)
-  const [pedido, setPedido] = useState(undefined)
-  const [pedidoAprov, setPedidoAprov] = useState(undefined)
   const [estoque, setEstoque] = useState(undefined)
-  const [recebimento, setRecebimento] = useState(undefined)
-  const [inventario, setInventario] = useState(undefined)
-  const [almoxarifado, setAlmoxarifado] = useState(undefined)
+  //const [solicitacao, setSolicitacao] = useState(undefined)
+  //const [solicitacaoAprov, setSolicitacaoAprov] = useState(undefined)
+  //const [cotacao, setCotacao] = useState(undefined)
+  //const [cotacaoAprov, setCotacaoAprov] = useState(undefined)
+  //const [pedido, setPedido] = useState(undefined)
+  //const [pedidoAprov, setPedidoAprov] = useState(undefined)
+  //const [recebimento, setRecebimento] = useState(undefined)
+  //const [inventario, setInventario] = useState(undefined)
+  //const [almoxarifado, setAlmoxarifado] = useState(undefined)
 
   //permissões de acesso de cada funcionalidade do módulo de suprimentos
   useEffect(() => {
@@ -28,16 +28,16 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
       const { data } = await api.get(`/adapt/agente_usu_org_perfil/${user?.USU_IN_CODIGO}/org/${user?.ORG_IN_CODIGO}/resource/0`)
       //seta todas as permissões em uma variável
       setPermissoes(data)
-      setSolicitacao(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:solicitacao:index')) /** permissão funcionalidade solicitação */
-      setSolicitacaoAprov(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:solicitacao:aprovar')) /** permissão funcionalidade aprovar solicitação */
-      setCotacao(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:cotacao:index')) /** permissão funcionalidade cotação */
-      setCotacaoAprov(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:cotacao:aprovar')) /** permissão funcionalidade aprovar cotação */
-      setPedido(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:pedido:index')) /** permissão funcionalidade pedido */
-      setPedidoAprov(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:pedido:aprovar')) /** permissão funcionalidade aprovar pedido */
       setEstoque(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:estoque:index')) /** permissão funcionalidade estoque */
-      setRecebimento(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:recebimento:index')) /** permissão funcionalidade recebimento */
-      setInventario(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:inventario:index')) /** permissão funcionalidade inventário */
-      setAlmoxarifado(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:almoxarifado:index')) /** permissão funcionalidade almoxarifado */
+      //setSolicitacao(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:solicitacao:index')) /** permissão funcionalidade solicitação */
+      //setSolicitacaoAprov(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:solicitacao:aprovar')) /** permissão funcionalidade aprovar solicitação */
+      //setCotacao(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:cotacao:index')) /** permissão funcionalidade cotação */
+      //setCotacaoAprov(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:cotacao:aprovar')) /** permissão funcionalidade aprovar cotação */
+      //setPedido(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:pedido:index')) /** permissão funcionalidade pedido */
+      //setPedidoAprov(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:pedido:aprovar')) /** permissão funcionalidade aprovar pedido */
+      //setRecebimento(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:recebimento:index')) /** permissão funcionalidade recebimento */
+      //setInventario(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:inventario:index')) /** permissão funcionalidade inventário */
+      //setAlmoxarifado(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:almoxarifado:index')) /** permissão funcionalidade almoxarifado */
     })()
   }, [permissoes != undefined])
 
@@ -53,7 +53,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
       <>
         <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1, alignItems: 'center' }}>
           <ScrollView style={{ flex: 1, width: '100%' }}>
-            {solicitacao &&
+            {/* solicitacao &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Solicitacao')} style={styles.button} underlayColor='#d0d0d0' >
                 <>
                   <View style={styles.viewImg}>
@@ -64,8 +64,8 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
-            {solicitacaoAprov &&
+            */}
+            {/* solicitacaoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovSolicitacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -76,8 +76,8 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
-            {cotacao &&
+            */}
+            {/* cotacao &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Cotacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -88,8 +88,8 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
-            {cotacaoAprov &&
+            */}
+            {/* cotacaoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovCotacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -100,8 +100,8 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
-            {pedido &&
+            */}
+            {/* pedido &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Pedido')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -112,8 +112,8 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
-            {pedidoAprov &&
+            */}
+            {/* pedidoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovPedido')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -124,8 +124,8 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
-            {recebimento &&
+            */}
+            {/* recebimento &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Recebimento')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -136,7 +136,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
+            */}
             {estoque &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Estoque')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -149,7 +149,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             }
-            {inventario &&
+            {/* inventario &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Inventario')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -160,8 +160,8 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
-            {almoxarifado &&
+            */}
+            {/* almoxarifado &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Almoxarifado')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -172,7 +172,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                   </View>
                 </>
               </TouchableHighlight>
-            }
+            */}
           </ScrollView>
         </LinearGradient>
       </>

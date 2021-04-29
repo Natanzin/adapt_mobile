@@ -4,7 +4,7 @@
   "expo": {
     "name": "ADAPT",
     "slug": "ADAPT",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -13,6 +13,7 @@
       "android",
       "ios"
     ],
+    "icon":"./src/assets/icon.png",
     "splash": {
       "image": "./src/assets/logo-login.png",
       "backgroundColor": "#FFFFFF",
@@ -27,10 +28,12 @@
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
         "NOTIFICATIONS"
-      ]
+      ],
+      "package":"com.pse2.adapt"
     },
     "ios": {
       "userInterfaceStyle": "automatic",
+      "bundleIdentifier":"com.pse2.adapt", 
       "infoPlist": {
         "NSCameraUsageDescription": "O acesso da camera é solicitado para permitir o envio de documentos.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "A localidade será utilizada, quando concedida, para oferer produtos e serviços, bem como orientações sobre endereços físicos.",

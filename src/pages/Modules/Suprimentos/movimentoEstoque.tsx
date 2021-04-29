@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, ActivityIndicator, TextInput } from 'react-native';
 import { Snackbar } from 'react-native-paper';
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
@@ -18,6 +18,7 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
     const [visible, setVisible] = useState(false)
     const [loading, setLoading] = useState(false)
     const [snackErro, setSnackErro] = useState(false)
+    const [documento, setDocumento] = useState('')
 
     useEffect(() => {
         if (movimento < 0) {
@@ -31,10 +32,10 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
     async function movimentar() {
         setLoading(true)
         try {
-            const { data } = await api.get(`/adapt/baixa_estoque/${user?.ORG_IN_CODIGO}/usu/${user?.USU_IN_CODIGO}/ali/${almox}/iti/${itemId}/qtd/${quantidade}`)
-            console.log(data)
+            const { data } = await api.get(`/adapt/baixa_estoque/${user?.ORG_IN_CODIGO}/usu/${user?.USU_IN_CODIGO}/ali/${almox}/iti/${itemId}/qtd/${quantidade}/DOC/${documento}`)
+            //console.log(data)
             setLoading(false)
-            props.navigation.navigate('Estoque')
+            props.navigation.navigate('Estoque', { 'movimento': 'ok' })
         } catch (e) {
             console.log('Deu ruim: ' + e)
             setLoading(false)
@@ -43,7 +44,7 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
     }
 
     return (
-        loading  ? <>
+        loading ? <>
             <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ActivityIndicator size={50 || "large"} color="#005685" />
                 <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
@@ -53,6 +54,16 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
                 <View style={styles.viewContent}>
                     <Text children={itemNome} style={styles.textItem} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                     <Text children={`Quantidade: ${quantidade}`} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                    <View style={{ marginTop: 12 }}>
+                        <Text children="Nº do documento" />
+                        <TextInput
+                            placeholder='Insira o número do documento!*'
+                            value={documento}
+                            onChangeText={item => setDocumento(item)}
+                            style={styles.input}
+                            keyboardType={'number-pad'}
+                        />
+                    </View>
                     <View style={styles.viewContador}>
                         <TouchableHighlight style={styles.iconChevron} underlayColor='#006685' onPress={() => { setMovimento(movimento - 1) }} >
                             <FontAwesome5Icon name='chevron-left' size={30} color='#fff' />
@@ -97,6 +108,7 @@ const styles = StyleSheet.create({
     viewContador: { flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'center', marginVertical: 20 },
     textCont: { fontSize: 40 },
     iconChevron: { paddingHorizontal: 15, paddingVertical: 10, backgroundColor: '#005685', borderRadius: 180, marginHorizontal: 15 },
-    button: { borderWidth: 1, borderRadius: 5, paddingHorizontal: 10, paddingVertical: 5, marginHorizontal: 25, marginTop: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 }
+    button: { borderWidth: 1, borderRadius: 5, paddingHorizontal: 10, paddingVertical: 5, marginHorizontal: 25, marginTop: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
+    input: { borderWidth: 1, padding: 0, paddingHorizontal: 8 }
 
 })
