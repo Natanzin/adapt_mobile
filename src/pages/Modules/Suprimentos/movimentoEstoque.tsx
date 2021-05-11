@@ -45,12 +45,12 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
 
     return (
         loading ? <>
-            <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
                 <ActivityIndicator size={50 || "large"} color="#005685" />
                 <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
-            </LinearGradient>
+            </View>
         </> :
-            <LinearGradient style={styles.viewContainer} colors={['#FFFFFF', '#D0D0D0']}>
+            <View style={styles.viewContainer} >
                 <View style={styles.viewContent}>
                     <Text children={itemNome} style={styles.textItem} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                     <Text children={`Quantidade: ${quantidade}`} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
@@ -95,14 +95,14 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
                 >
                     Desculpe, mas não conseguimos alterar o seu estoque. Tente novamente mais tarde!
             </Snackbar>
-            </LinearGradient>
+            </View>
     );
 }
 
 export default MovimentoEstoque;
 
 const styles = StyleSheet.create({
-    viewContainer: { flex: 1, justifyContent: 'center' },
+    viewContainer: { flex: 1, justifyContent: 'center', backgroundColor: '#f0f0f0' },
     viewContent: { backgroundColor: '#FFF', marginHorizontal: 15, borderTopColor: '#005685', borderTopWidth: 10, borderRadius: 5, paddingHorizontal: 10, paddingVertical: 8, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
     textItem: { fontSize: 25, fontWeight: 'bold', textAlign: 'center' },
     viewContador: { flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'center', marginVertical: 20 },

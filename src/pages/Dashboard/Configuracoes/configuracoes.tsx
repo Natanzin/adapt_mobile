@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, TouchableHighlight, StyleSheet, Text } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
 
 const Configuracoes = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     return (
-        <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1, alignItems: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f0f0f0' }}>
             <TouchableHighlight onPress={() => props.navigation.navigate('Organizacoes') } underlayColor='#45BBEB' style={styles.cardButton}>
                 <>
                     <Text children='Organizações' style={styles.textButton} />
@@ -20,7 +19,7 @@ const Configuracoes = (props: { navigation: StackNavigationProp<AppParamsList> }
                     <FontAwesome5Icon name='info-circle' size={40} color='#005685' />
                 </>
             </TouchableHighlight>
-        </LinearGradient>
+        </View>
     );
 }
 

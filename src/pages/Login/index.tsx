@@ -63,18 +63,18 @@ const Login = (props: any) => {
         <Provider>
             <View style={style.content}>
                 <View style={style.viewLogo}>
-                    <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={style.viewContent}>
+                    <View style={[style.viewContent, { backgroundColor: '#f0f0f0' }]}>
                         <Image source={require('../../assets/logo-login.png')} resizeMode='contain' style={style.logo} />
-                    </LinearGradient>
+                    </View>
                 </View>
-                <LinearGradient colors={['#45BBEB', '#005685']} style={style.viewContent}>
+                <View style={[style.viewContent, { backgroundColor: '#005685' }]}>
                     <View style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }}>
                         <TextInput
                             placeholder='Usuário'
                             style={style.input}
                             onChangeText={text => setUsuario(text)}
                             value={usuario}
-                            placeholderTextColor='#D0D0D0'
+                            placeholderTextColor='#909090'
                             autoCompleteType={'off'} />
                         <TextInput
                             placeholder='Senha'
@@ -82,15 +82,14 @@ const Login = (props: any) => {
                             onChangeText={senha => setSenha(senha)}
                             value={senha}
                             secureTextEntry={true}
-                            placeholderTextColor='#D0D0D0'
-                            autoCompleteType={'off'}
-                        />
+                            placeholderTextColor='#909090'
+                            autoCompleteType={'off'} />
                     </View>
-                    <LinearGradient colors={['#F29F54', '#E17009']} style={style.button}>
-                        <TouchableHighlight onPress={efetuarLogin} underlayColor='#F29F54' style={{ borderRadius: 5 }}>
-                            <Title children={'Entrar'} style={style.textButton} />
-                        </TouchableHighlight>
-                    </LinearGradient>
+
+                    <TouchableHighlight onPress={efetuarLogin} underlayColor='#F29F54' style={style.button}>
+                        <Text children={'Entrar'} style={style.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                    </TouchableHighlight>
+
                     <View style={{ flexDirection: 'row' }}>
                         <TouchableHighlight onPress={() => setVisible(true)} underlayColor='#005685' style={{ borderRadius: 4 }}>
                             <Text children='ESQUECI MINHA SENHA' style={style.textOption} />
@@ -101,7 +100,7 @@ const Login = (props: any) => {
                         </TouchableHighlight>
                     </View>
                     <Text children='COPYRIGHT© - TODOS OS DIREITOS RESERVADOS - 2010 PSE2' style={style.copy} />
-                </LinearGradient>
+                </View>
             </View>
             <Portal>
                 <Modal visible={visible} onDismiss={() => setVisible(false)} >
@@ -166,10 +165,10 @@ export default Login;
 
 const style = StyleSheet.create({
     content: { flex: 1, alignItems: 'center', justifyContent: 'space-between' },
-    button: { backgroundColor: '#f29f54', borderWidth: 1, borderColor: '#85480f', borderRadius: 5, width: '50%', shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
+    button: { backgroundColor: 'rgb(251, 180, 47)', borderWidth: 1, borderColor: '#85480f', borderRadius: 5, width: '60%', paddingVertical: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
     buttonModal: { borderWidth: 1, borderRadius: 5, paddingHorizontal: 10, paddingVertical: 5, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
-    textButton: { color: '#643509', textAlign: 'center', fontWeight: 'bold', fontSize: 25 },
-    input: { height: 40, width: '80%', borderColor: '#ccc', borderWidth: 1, backgroundColor: '#fff', textAlign: 'center', color: '#000', borderRadius: 5 },
+    textButton: { color: '#fff', textAlign: 'center', fontWeight: 'bold', fontSize: 30 },
+    input: { height: 50, width: '80%', borderColor: '#f0f0f0', borderWidth: 1, backgroundColor: '#fff', textAlign: 'center', color: '#000', borderRadius: 5 },
     copy: { color: '#fff', fontSize: 8, textAlign: 'center' },
     viewLogo: { flex: 1, backgroundColor: '#e9e9e9', width: '100%', alignItems: 'center', justifyContent: 'center', shadowColor: "#000", shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.37, shadowRadius: 7.49, elevation: 12 },
     viewContent: { flex: 4, width: '100%', alignItems: 'center', justifyContent: 'space-around' },

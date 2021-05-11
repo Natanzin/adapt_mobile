@@ -14,10 +14,10 @@ const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
 
     useEffect(() => {
         (async () => {
-            try{
+            try {
                 const { data } = await api.get(`/adapt/estoque_lista/${user?.ORG_IN_CODIGO}/USU/${user?.USU_IN_CODIGO}`)
                 setProdutos(data)
-            }catch(e){
+            } catch (e) {
                 console.log('Deu ruim: ' + e)
                 props.navigation.goBack()
             }
@@ -34,12 +34,12 @@ const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     return (
         <>
             {produtos === undefined ?
-                <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
                     <ActivityIndicator size={50 || "large"} color="#005685" />
                     <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
-                </LinearGradient>
+                </View>
                 :
-                <LinearGradient style={{ flex: 1 }} colors={['#FFFFFF', '#D0D0D0']}>
+                <View style={{ flex: 1, backgroundColor: '#f0f0f0' }} >
                     <ScrollView style={{ flex: 1 }}>
                         {produtos?.map(item => (
                             <TouchableHighlight
@@ -51,28 +51,33 @@ const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
                                     <Text children={`${item.ITE_ST_DESCRICAO}`} style={style.textTitle} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                                     <Divider style={{ backgroundColor: '#005685', marginHorizontal: 8 }} />
                                     <Card.Content>
+
                                         <View style={style.viewText}>
                                             <Text style={{ fontWeight: 'bold' }}>Almoxarifado: </Text>
                                             <Text>{item.ALM_ST_DESCRICAO}</Text>
                                         </View>
+
                                         <View style={style.viewText}>
                                             <Text style={{ fontWeight: 'bold' }}>Grupo: </Text>
                                             <Text>{item.GRU_ST_DESCRICAO}</Text>
                                         </View>
+
                                         <View style={style.viewText}>
                                             <Text style={{ fontWeight: 'bold' }}>Unidade: </Text>
                                             <Text>{item.UNI_CH_SIGLA || ' - '}</Text>
                                         </View>
+
                                         <View style={style.viewText}>
                                             <Text style={{ fontWeight: 'bold' }}>Quantidade: </Text>
                                             <Text>{item.QUANTIDADE}</Text>
                                         </View>
+                                        
                                     </Card.Content>
                                 </Card>
                             </TouchableHighlight>
                         ))}
                     </ScrollView>
-                </LinearGradient>
+                </View>
             }
             <Snackbar
                 visible={movimento}

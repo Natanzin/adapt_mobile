@@ -27,7 +27,7 @@ const Organizacoes = (props: { navigation: StackNavigationProp<AppParamsList> })
             :
             <>
                 <ScrollView style={{ flex: 1, width: '100%' }}>
-                    <View style={{ flex: 1, alignItems: 'center' }}>
+                    <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f0f0f0' }}>
                         {org?.map(item => {
                             return (
                                 <View key={item.ORG_IN_CODIGO} style={styles.viewItem}>

@@ -5,12 +5,12 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 const Sobre: React.FC = () => {
   return (
-      <LinearGradient colors={['#FFFFFF','#D0D0D0']} style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly', backgroundColor: '#f0f0f0' }}>
           <Text style={styles.text} children="Adapt - Sistema de Gestão Empresarial" />
           <Text style={styles.text} children={`Versão: ${app?.expo?.version}`} />
           <Image source={require('../../../assets/img-grupo-eficaz.png')} style={{ width: Dimensions.get('screen').width - 30, height: 100 }} resizeMode={'contain'} />
           <Text style={styles.text} children='COPYRIGHT© - TODOS OS DIREITOS RESERVADOS - 2010 PSE2' numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-      </LinearGradient>
+      </View>
   );
 }
 

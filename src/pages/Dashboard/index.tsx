@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, TouchableHighlight, Image, Text, StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native'
+import { Divider } from 'react-native-paper'
 import { useAuth } from '../../contexts/auth'
-import { LinearGradient } from 'expo-linear-gradient'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../routes/app.routes'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -27,8 +27,8 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
             //seta todas as permissões em uma variável
             setPermissoes(data)
             setSuprimento(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:index:index')) /** permissão módulo Suprimento */
-            setRota(data.find(obj => obj.OBJ_ST_RESOURCE == 'contrato:rota:index')) /** permissão módulo Rotas */
-            setReserva(data.find(obj => obj.OBJ_ST_RESOURCE == 'contrato:contrato-reserva:index')) /** permissão módulo Reserva */
+            //setRota(data.find(obj => obj.OBJ_ST_RESOURCE == 'contrato:rota:index')) /** permissão módulo Rotas */
+            //setReserva(data.find(obj => obj.OBJ_ST_RESOURCE == 'contrato:contrato-reserva:index')) /** permissão módulo Reserva */
         })()
     }, [permissoes != undefined])
 
@@ -39,7 +39,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: '#f0f0f0' }}>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ width: '85%', alignItems: 'center', justifyContent: 'center' }}>
@@ -62,12 +62,12 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                             </View>
                         </>
                         : <>
-                            <ScrollView style={{ flex: 1, width: '100%' }}>
+                            <ScrollView style={{ flex: 1, width: '100%', borderTopWidth: 1, borderTopColor: '#005685' }}>
                                 {suprimento &&
                                     <TouchableHighlight onPress={() => props.navigation.navigate('Suprimentos')} style={styles.button} underlayColor='#d0d0d0'>
                                         <>
                                             <View style={styles.viewButton}>
-                                                <Image source={require('../../assets/icon-suprimentos.png')} style={styles.imgButton} resizeMode={'contain'} />
+                                                <Image source={require('../../assets/imagens/Prancheta1.png')} style={styles.imgButton} resizeMode={'contain'} />
                                             </View>
                                             <View style={styles.viewButton}>
                                                 <Text children='Suprimentos' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
@@ -119,10 +119,10 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                         </>
                                     </TouchableHighlight>
                                 */}
-                                <TouchableHighlight onPress={handleSignOut} style={[styles.button,{ backgroundColor: 'rgba(00, 56, 85, 0.8)' }]} underlayColor='#d0d0d0'>
+                                <TouchableHighlight onPress={handleSignOut} style={[styles.button,{ backgroundColor: 'rgb(251, 180, 47)' }]} underlayColor='#d0d0d0'>
                                     <>
                                         <View style={styles.viewButton}>
-                                            <Image source={require('../../assets/icon-logout-branco.png')} style={styles.imgButton} resizeMode={'contain'} />
+                                            <Image source={require('../../assets/imagens/icon-logout.png')} style={styles.imgButton} resizeMode={'contain'} />
                                         </View>
                                         <View style={styles.viewButton}>
                                             <Text children='SAIR DO APP' style={[styles.textButton, { color: '#FFF'}]} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
@@ -133,7 +133,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                         </>
                     }
                 </View>
-            </LinearGradient>
+            </View>
         </SafeAreaView>
     );
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image, Text, StyleSheet, TouchableHighlight, ScrollView, ActivityIndicator } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
 import api from '../../../services/api'
@@ -44,14 +43,14 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
   return (
     permissoes === undefined ?
       <>
-        <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
           <ActivityIndicator size={50 || "large"} color="#005685" />
           <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
-        </LinearGradient>
+        </View>
       </>
       :
       <>
-        <LinearGradient colors={['#FFFFFF', '#D0D0D0']} style={{ flex: 1, alignItems: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f0f0f0' }}>
           <ScrollView style={{ flex: 1, width: '100%' }}>
             {/* solicitacao &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Solicitacao')} style={styles.button} underlayColor='#d0d0d0' >
@@ -65,6 +64,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+
             {/* solicitacaoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovSolicitacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -77,6 +77,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+
             {/* cotacao &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Cotacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -89,6 +90,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+
             {/* cotacaoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovCotacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -101,6 +103,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+
             {/* pedido &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Pedido')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -113,6 +116,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+
             {/* pedidoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovPedido')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -125,6 +129,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+
             {/* recebimento &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Recebimento')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -137,11 +142,12 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+
             {estoque &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Estoque')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
-                    <Image source={require('../../../assets/icon-module-5.png')} style={styles.imgButton} resizeMode={'contain'} />
+                    <Image source={require('../../../assets/imagens/Prancheta2.png')} style={styles.imgButton} resizeMode={'contain'} />
                   </View>
                   <View style={styles.viewText}>
                     <Text children='Estoque' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
@@ -149,6 +155,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             }
+
             {/* inventario &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Inventario')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -161,6 +168,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+
             {/* almoxarifado &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Almoxarifado')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
@@ -173,8 +181,9 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
+            
           </ScrollView>
-        </LinearGradient>
+        </View>
       </>
   );
 }
@@ -184,7 +193,7 @@ export default Suprimentos;
 const styles = StyleSheet.create({
   viewButtonGroup: { flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', paddingVertical: 10 },
   button: { borderWidth: 1, borderColor: '#D0D0D0', borderRadius: 5, height: 120, alignItems: 'center', justifyContent: 'space-evenly', backgroundColor: '#FFF', flexDirection: 'row', marginHorizontal: 10, marginVertical: 5 },
-  imgButton: { width: '50%', height: '50%' },
+  imgButton: { width: 100, height: '90%' },
   textButton: { fontSize: 22, fontWeight: 'bold' },
   viewImg: { width: '40%', height: '100%', alignItems: 'center', justifyContent: 'center' },
   viewText: { width: '60%', height: '100%', alignItems: 'center', justifyContent: 'center' }
