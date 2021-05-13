@@ -13,7 +13,7 @@
       "android",
       "ios"
     ],
-    "icon":"./src/assets/icon.png",
+    "icon":"./src/assets/icon-gradiente.png",
     "splash": {
       "image": "./src/assets/logo-login.png",
       "backgroundColor": "#FFFFFF",

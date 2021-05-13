@@ -1,117 +1,107 @@
 import React, { useEffect, useState } from 'react'
-import { TouchableHighlight, StyleSheet } from 'react-native'
-import { Title } from 'react-native-paper'
-import { LinearGradient } from 'expo-linear-gradient'
-import { Calendar, LocaleConfig } from 'react-native-calendars'
+import { TouchableHighlight, StyleSheet, View, ScrollView, Text } from 'react-native'
+import { Title, Drawer, Provider, Portal, Modal, Divider } from 'react-native-paper'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
+import reservas from './reservas.json'
+import meses from './meses.json'
+import moment from 'moment';
+import api from '../../../services/api'
 
-const Reservas = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
+const Reservas = (props: { navigation: StackNavigationProp<AppParamsList> & any }) => {
+    const data = reservas
+    const todosMeses = meses
+    const mesAtual = moment().format('MM')
+    const [dataReservas, setDataReservas] = useState()
+    const [active, setActive] = useState(mesAtual)
+    const [visible, setVisible] = useState(false)
+    const [loading, setLoading] = useState(false)
 
-    interface reservationData {
-        dataReserva: string,
-        dots: {
-            churrasqueira: boolean,
-            gourmet: boolean,
-            entregaMoveis: boolean,
-            mudanca: boolean,
-            internet: boolean,
-            lavanderia: boolean,
-            salaoFesta: boolean
+    async function getReservas(mes: String) {
+        try {
+            setLoading(true)
+            const { data } = await api.get(`/adapt/reservas/mes/${mes}`)
+            setDataReservas(data)
+            setLoading(false)
+        } catch (e) {
+            console.log('Deu ruim na listagem das reservas: ' + e)
         }
     }
 
-    const [reservation, setReservation] = useState<reservationData>({
-        dataReserva: '',
-        dots: {
-            churrasqueira: false,
-            gourmet: false,
-            entregaMoveis: false,
-            mudanca: false,
-            internet: false,
-            lavanderia: false,
-            salaoFesta: false
-        }
-    })
-
+    //executa assim que a tela é aberta
     useEffect(() => {
-
+        //getReservas(mesAtual)
     }, [])
 
-    LocaleConfig.locales['br'] = {
-        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-    };
-    LocaleConfig.defaultLocale = 'br';
-
     return (
-        <LinearGradient style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 10 }} colors={['#FFFFFF', '#D0D0D0']}>
-            <LinearGradient style={style.button} colors={['#f29f54', '#e17009']}>
-                <TouchableHighlight onPress={() => props.navigation.navigate('FormReservas')} underlayColor='#f29f54' style={{ borderRadius: 5 }} >
-                    <Title style={style.textButton} children='Nova Reserva' />
+        <Provider>
+            <View style={styles.container}>
+                <Title children={`Condomínio: `} />
+                <TouchableHighlight onPress={() => { setVisible(true) }}>
+                    <Title children={`Mês: ${active}`} />
                 </TouchableHighlight>
-            </LinearGradient>
-            <Calendar
-                style={{
-                    borderRadius: 10,
-                    borderTopWidth: 10,
-                    borderTopColor: '#005685',
-                    paddingBottom: 10
-                }}
-                onDayPress={day => console.log(day)}
-                theme={{
-                    backgroundColor: '#fff',
-                    calendarBackground: '#fff',
-                    textSectionTitleColor: '#ccc',
-                    selectedDayBackgroundColor: '#ccc',
-                    selectedDayTextColor: '#fff',
-                    todayTextColor: '#45bbeb',
-                    dayTextColor: '#005685',
-                    textDisabledColor: '#f0f0f0',
-                    dotColor: '#45bbeb',
-                    selectedDotColor: '#fff',
-                    arrowColor: '#e17009',
-                    monthTextColor: '#45bbeb',
-                    indicatorColor: 'blue',
-                    textDayFontFamily: 'monospace',
-                    textMonthFontFamily: 'monospace',
-                    textDayHeaderFontFamily: 'monospace',
-                    textDayFontWeight: '300',
-                    textMonthFontWeight: 'bold',
-                    textDayHeaderFontWeight: '300',
-                    textDayFontSize: 20,
-                    textMonthFontSize: 21,
-                    textDayHeaderFontSize: 16
-                }}
-                markedDates={{}}
-                markingType={'multi-dot'}
-
-            />
-        </LinearGradient>
-
-    );
+                <ScrollView style={styles.scroll}>
+                    {data?.map(item => {
+                        return (
+                            <View key={item.id} style={styles.cardData}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text children={item.dia + " "} style={styles.textDia} />
+                                    <Text children={item.mes} style={{ fontWeight: 'bold' }} />
+                                </View>
+                                {!item.cadastros ?
+                                    <View style={styles.cardSemCadastro}>
+                                        <Text children={'Nenhum evento cadastrado!'} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                    </View>
+                                    :
+                                    item.cadastros.map(reserva => (
+                                        <View key={reserva.id} style={styles.cardReserva}>
+                                            <Text children={reserva.categoria} />
+                                            <Text children={reserva.responsavel + ' - ' + reserva.apartamento + '_' + reserva.bloco} />
+                                        </View>
+                                    ))
+                                }
+                            </View>
+                        )
+                    })}
+                </ScrollView>
+                <View>
+                    <TouchableHighlight onPress={() => { setVisible(true) }} underlayColor='#45bbeb' style={styles.button} >
+                        <Text style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold', fontSize: 20, marginVertical: 3 }} children='Cadastrar novo evento!' />
+                    </TouchableHighlight>
+                </View>
+            </View>
+            <Portal>
+                <Modal visible={visible} onDismiss={() => { setVisible(false) }}>
+                    <View style={styles.cardModal}>
+                        <Text children={'Escolha o mês que deseja visualizar!'} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} style={styles.textDia} />
+                        <Divider />
+                        <Drawer.Section>
+                            {todosMeses.map(item => (
+                                <Drawer.Item
+                                    key={item.id}
+                                    label={item.numeroMes + " - " + item.nomeMes}
+                                    active={active === `${item.numeroMes}`}
+                                    onPress={() => { setActive(`${item.numeroMes}`); setVisible(false); getReservas(item.numeroMes) }}
+                                />
+                            ))}
+                        </Drawer.Section>
+                    </View>
+                </Modal>
+            </Portal>
+        </Provider>
+    )
 }
-{/** '2021-03-25': { dots: [churrasqueira], selected: true },
-                    '2021-03-26': { dots: [churrasqueira, entregaMoveis], selected: true },
-                    '2021-03-27': { dots: [churrasqueira, entregaMoveis, gourmet], selected: true },
-                    '2021-03-28': { dots: [churrasqueira, entregaMoveis, gourmet, internet], selected: true },
-                    '2021-03-29': { dots: [churrasqueira, entregaMoveis, gourmet, internet, lavanderia], selected: true },
-                    '2021-03-30': { dots: [churrasqueira, entregaMoveis, gourmet, internet, lavanderia, mudanca], selected: true },
-                    '2021-03-31': { dots: [churrasqueira, entregaMoveis, gourmet, internet, lavanderia, mudanca, salaoFesta], selected: true }, */}
+
 
 export default Reservas;
 
-const style = StyleSheet.create({
-    button: { backgroundColor: '#f29f54', borderWidth: 1, borderColor: '#85480f', borderRadius: 5, marginBottom: 15, width: '50%', shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
-    textButton: { color: '#643509', textAlign: 'center', fontWeight: 'bold', fontSize: 25 }
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: '#f0f0f0' },
+    scroll: { paddingVertical: 8, paddingHorizontal: 10 },
+    textDia: { fontWeight: 'bold', fontSize: 25 },
+    cardData: { width: '100%', borderWidth: 2, borderColor: '#005685', marginBottom: 12, borderRadius: 5, backgroundColor: 'rgb(251, 180, 47)' },
+    cardReserva: { backgroundColor: '#fff', marginHorizontal: 8, marginVertical: 1.5, borderColor: '#005685', borderWidth: 1, borderRadius: 3, paddingHorizontal: 5 },
+    cardSemCadastro: { alignItems: 'center', justifyContent: 'center', marginBottom: 5 },
+    button: { borderWidth: 2, borderColor: '#000', borderRadius: 5, marginHorizontal: 10, marginVertical: 2, backgroundColor: '#005685', alignItems: 'center', justifyContent: 'center', paddingVertical: 5, },
+    cardModal: { backgroundColor: '#fff', marginHorizontal: 10, borderRadius: 8, justifyContent: 'center', paddingHorizontal: 10, paddingVertical: 8 }
 })
-
-{/**     const churrasqueira = { key: 'churrasqueira', color: 'red', selectedDotColor: 'red' };
-    const gourmet = { key: 'gourmet', color: 'orange', selectedDotColor: 'orange' };
-    const entregaMoveis = { key: 'entregaMoveis', color: 'purple', selectedDotColor: 'purple' };
-    const mudanca = { key: 'mudanca', color: 'green', selectedDotColor: 'green' };
-    const internet = { key: 'internet', color: 'blue', selectedDotColor: 'blue' };
-    const lavanderia = { key: 'lavanderia', color: 'gray', selectedDotColor: 'gray' };
-    const salaoFesta = { key: 'salaoFesta', color: 'pink', selectedDotColor: 'pink' }; */}

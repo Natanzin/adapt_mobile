@@ -30,6 +30,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
             //setRota(data.find(obj => obj.OBJ_ST_RESOURCE == 'contrato:rota:index')) /** permissão módulo Rotas */
             //setReserva(data.find(obj => obj.OBJ_ST_RESOURCE == 'contrato:contrato-reserva:index')) /** permissão módulo Reserva */
         })()
+        console.log(user)
     }, [permissoes != undefined])
 
 
@@ -85,18 +86,20 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             </View>
                                         </>
                                     </TouchableHighlight>
-                                */}{/*reserva &&
-                                    <TouchableHighlight onPress={() => props.navigation.navigate('Reservas')} style={styles.button} underlayColor='#d0d0d0'>
-                                        <>
-                                            <View style={styles.viewButton}>
-                                                <Image source={require('../../assets/icon-reserva.png')} style={styles.imgButton} resizeMode={'contain'} />
-                                            </View>
-                                            <View style={styles.viewButton}>
-                                                <Text children='Reservas' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                            </View>
-                                        </>
-                                    </TouchableHighlight>
-                                */}{/* moduleAutorization?.modules.ponto &&
+                                */}
+
+                                <TouchableHighlight onPress={() => props.navigation.navigate('Reservas')} style={styles.button} underlayColor='#d0d0d0'>
+                                    <>
+                                        <View style={styles.viewButton}>
+                                            <Image source={require('../../assets/imagens/icone-portal-reserva.png')} style={styles.imgButton} resizeMode={'contain'} />
+                                        </View>
+                                        <View style={styles.viewButton}>
+                                            <Text children='Reservas' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                        </View>
+                                    </>
+                                </TouchableHighlight>
+
+                                {/* moduleAutorization?.modules.ponto &&
                                     <TouchableHighlight onPress={() => props.navigation.navigate('Ponto')} style={styles.button} underlayColor='#d0d0d0'>
                                         <>
                                             <View style={styles.viewButton}>
@@ -119,13 +122,13 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                         </>
                                     </TouchableHighlight>
                                 */}
-                                <TouchableHighlight onPress={handleSignOut} style={[styles.button,{ backgroundColor: 'rgb(251, 180, 47)' }]} underlayColor='#d0d0d0'>
+                                <TouchableHighlight onPress={handleSignOut} style={[styles.button, { backgroundColor: 'rgb(251, 180, 47)' }]} underlayColor='#d0d0d0'>
                                     <>
                                         <View style={styles.viewButton}>
                                             <Image source={require('../../assets/imagens/icon-logout.png')} style={styles.imgButton} resizeMode={'contain'} />
                                         </View>
                                         <View style={styles.viewButton}>
-                                            <Text children='SAIR DO APP' style={[styles.textButton, { color: '#FFF'}]} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                            <Text children='SAIR DO APP' style={[styles.textButton, { color: '#FFF' }]} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                                         </View>
                                     </>
                                 </TouchableHighlight>

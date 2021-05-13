@@ -21,13 +21,13 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
   //const [almoxarifado, setAlmoxarifado] = useState(undefined)
 
   //permissões de acesso de cada funcionalidade do módulo de suprimentos
-  useEffect(() => {
-    (async () => {
+  // useEffect(() => {
+    //(async () => {
       //requisição de todas as permissões
-      const { data } = await api.get(`/adapt/agente_usu_org_perfil/${user?.USU_IN_CODIGO}/org/${user?.ORG_IN_CODIGO}/resource/0`)
+      //const { data } = await api.get(`/adapt/agente_usu_org_perfil/${user?.USU_IN_CODIGO}/org/${user?.ORG_IN_CODIGO}/resource/0`)
       //seta todas as permissões em uma variável
-      setPermissoes(data)
-      setEstoque(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:estoque:index')) /** permissão funcionalidade estoque */
+      //setPermissoes(data)
+      //setEstoque(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:estoque:index')) /** permissão funcionalidade estoque */
       //setSolicitacao(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:solicitacao:index')) /** permissão funcionalidade solicitação */
       //setSolicitacaoAprov(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:solicitacao:aprovar')) /** permissão funcionalidade aprovar solicitação */
       //setCotacao(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:cotacao:index')) /** permissão funcionalidade cotação */
@@ -37,22 +37,15 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
       //setRecebimento(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:recebimento:index')) /** permissão funcionalidade recebimento */
       //setInventario(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:inventario:index')) /** permissão funcionalidade inventário */
       //setAlmoxarifado(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:almoxarifado:index')) /** permissão funcionalidade almoxarifado */
-    })()
-  }, [permissoes != undefined])
+    //})()
+  //}, [permissoes != undefined]) 
+  
 
   return (
-    permissoes === undefined ?
-      <>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
-          <ActivityIndicator size={50 || "large"} color="#005685" />
-          <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
-        </View>
-      </>
-      :
-      <>
-        <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f0f0f0' }}>
-          <ScrollView style={{ flex: 1, width: '100%' }}>
-            {/* solicitacao &&
+    <>
+      <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f0f0f0' }}>
+        <ScrollView style={{ flex: 1, width: '100%' }}>
+          {/* solicitacao &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Solicitacao')} style={styles.button} underlayColor='#d0d0d0' >
                 <>
                   <View style={styles.viewImg}>
@@ -65,7 +58,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
               </TouchableHighlight>
             */}
 
-            {/* solicitacaoAprov &&
+          {/* solicitacaoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovSolicitacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -78,7 +71,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
               </TouchableHighlight>
             */}
 
-            {/* cotacao &&
+          {/* cotacao &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Cotacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -91,7 +84,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
               </TouchableHighlight>
             */}
 
-            {/* cotacaoAprov &&
+          {/* cotacaoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovCotacao')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -104,7 +97,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
               </TouchableHighlight>
             */}
 
-            {/* pedido &&
+          {/* pedido &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Pedido')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -117,7 +110,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
               </TouchableHighlight>
             */}
 
-            {/* pedidoAprov &&
+          {/* pedidoAprov &&
               <TouchableHighlight onPress={() => props.navigation.navigate('AprovPedido')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -130,7 +123,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
               </TouchableHighlight>
             */}
 
-            {/* recebimento &&
+          {/* recebimento &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Recebimento')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -143,20 +136,20 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
               </TouchableHighlight>
             */}
 
-            {estoque &&
-              <TouchableHighlight onPress={() => props.navigation.navigate('Estoque')} style={styles.button} underlayColor='#d0d0d0'>
-                <>
-                  <View style={styles.viewImg}>
-                    <Image source={require('../../../assets/imagens/Prancheta2.png')} style={styles.imgButton} resizeMode={'contain'} />
-                  </View>
-                  <View style={styles.viewText}>
-                    <Text children='Estoque' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                  </View>
-                </>
-              </TouchableHighlight>
-            }
 
-            {/* inventario &&
+          <TouchableHighlight onPress={() => props.navigation.navigate('Estoque')} style={styles.button} underlayColor='#d0d0d0'>
+            <>
+              <View style={styles.viewImg}>
+                <Image source={require('../../../assets/imagens/Prancheta2.png')} style={styles.imgButton} resizeMode={'contain'} />
+              </View>
+              <View style={styles.viewText}>
+                <Text children='Estoque' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+              </View>
+            </>
+          </TouchableHighlight>
+
+
+          {/* inventario &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Inventario')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -169,7 +162,7 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
               </TouchableHighlight>
             */}
 
-            {/* almoxarifado &&
+          {/* almoxarifado &&
               <TouchableHighlight onPress={() => props.navigation.navigate('Almoxarifado')} style={styles.button} underlayColor='#d0d0d0'>
                 <>
                   <View style={styles.viewImg}>
@@ -181,10 +174,10 @@ const Suprimentos = (props: { navigation: StackNavigationProp<AppParamsList> }) 
                 </>
               </TouchableHighlight>
             */}
-            
-          </ScrollView>
-        </View>
-      </>
+
+        </ScrollView>
+      </View>
+    </>
   );
 }
 

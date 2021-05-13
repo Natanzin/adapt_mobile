@@ -32,8 +32,7 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
     async function movimentar() {
         setLoading(true)
         try {
-            const { data } = await api.get(`/adapt/baixa_estoque/${user?.ORG_IN_CODIGO}/usu/${user?.USU_IN_CODIGO}/ali/${almox}/iti/${itemId}/qtd/${quantidade}/DOC/${documento}`)
-            //console.log(data)
+            const { data } = await api.get(`/adapt/baixa_estoque/${user?.ORG_IN_CODIGO}/usu/${user?.USU_IN_CODIGO}/ali/${almox}/iti/${itemId}/qtd/${movimento}/doc/${documento}`)
             setLoading(false)
             props.navigation.navigate('Estoque', { 'movimento': 'ok' })
         } catch (e) {

@@ -10,26 +10,20 @@ import { useAuth } from '../../../contexts/auth'
 const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     const { user } = useAuth()
     const [produtos, setProdutos] = useState(undefined)
-    const [movimento, setMovimento] = useState(false)
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await api.get(`/adapt/estoque_lista/${user?.ORG_IN_CODIGO}/USU/${user?.USU_IN_CODIGO}`)
-                setProdutos(data)
-            } catch (e) {
-                console.log('Deu ruim: ' + e)
-                props.navigation.goBack()
-            }
-            //console.log(data)
-        })()
-    }, [])
-
-    useEffect(() => {
-        if (props?.route?.params?.movimento === 'ok') {
-            setMovimento(true)
+    async function listaEstoque() {
+        try {
+            const { data } = await api.get(`/adapt/estoque_lista/${user?.ORG_IN_CODIGO}/USU/${user?.USU_IN_CODIGO}`)
+            setProdutos(data)
+        } catch (e) {
+            console.log('Deu ruim: ' + e)
+            props.navigation.navigate('Suprimentos')
         }
-    }, [])
+    }
+
+    useEffect(() => {
+        listaEstoque()
+    })
 
     return (
         <>
@@ -71,7 +65,7 @@ const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
                                             <Text style={{ fontWeight: 'bold' }}>Quantidade: </Text>
                                             <Text>{item.QUANTIDADE}</Text>
                                         </View>
-                                        
+
                                     </Card.Content>
                                 </Card>
                             </TouchableHighlight>
@@ -79,14 +73,6 @@ const Estoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
                     </ScrollView>
                 </View>
             }
-            <Snackbar
-                visible={movimento}
-                onDismiss={() => { setMovimento(!movimento) }}
-                duration={3500}
-                style={{ backgroundColor: '#005500', borderTopWidth: 8, borderTopColor: '#00CC00' }}
-            >
-                Movimento de estoque realizado com sucesso!
-            </Snackbar>
         </>
     );
 }
