@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, ScrollView, TouchableHighlight } from 'react-native'
 import { RadioButton, Title } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient'
-import DatePicker from 'react-native-datepicker'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
+import { TextInputMask } from 'react-native-masked-text'
+import moment from 'moment'
 
 const FormReservas = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     const [qtdPessoas, setQtdPessoas] = useState('')
     const [finalidade, setFinalidade] = useState('')
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState(moment().format('DD/MM/YYYY'))
     const [categoria, setCategoria] = useState('')
     const [horario, setHorario] = useState('')
 
@@ -23,21 +24,24 @@ const FormReservas = (props: { navigation: StackNavigationProp<AppParamsList> })
     }
 
     var itemCategoria = [
-        { 'title': 'Churrasqueira' }, { 'title': 'Entrega de Móveis' }, { 'title': 'Gourmet / Home' }, { 'title': 'Instalação de Internet' }, { 'title': 'Lavanderia - Noturno' }, { 'title': 'Mudança' }, { 'title': 'Salão de Festa' }
+        { 'id':'01','title': 'Churrasqueira' }, { 'id':'02','title': 'Entrega de Móveis' }, { 'id':'03','title': 'Gourmet / Home' }, { 'id':'04','title': 'Instalação de Internet' }, { 'id':'05','title': 'Lavanderia - Noturno' }, { 'id':'06','title': 'Mudança' }, { 'id':'07','title': 'Salão de Festa' }
     ]
     var itemHorario = [
-        { 'hora': '10:30' }, { 'hora': '12:30' },
+        { 'id':'01','hora': '10:30' }, { 'id':'02','hora': '12:30' },
     ]
     return (
         <ScrollView style={{ flex: 1, width: '100%' }}>
-            <LinearGradient style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 15 }} colors={['#45bbeb', '#005685']}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 15, backgroundColor: '#f0f0f0' }} >
                 <Title children={'Data'} style={style.titleInput} />
-                <DatePicker
-                    format='DD/MM/YYYY'
-                    style={style.input}
-                    date={date}
-                    onDateChange={value => setDate(value)}
-                />
+                    <TextInputMask 
+                        style={style.input}
+                        type={'datetime'}
+                        options={{
+                            format: 'DD/MM/YYYY'
+                        }}
+                        value={date}
+                        onChangeText={text => setDate(text)}
+                    />
                 <Title children={'Espaço'} style={style.titleInput} />
                 <View style={style.picker}>
                     <RadioButton.Group onValueChange={categoria => setCategoria(categoria)} value={categoria} >
@@ -56,7 +60,7 @@ const FormReservas = (props: { navigation: StackNavigationProp<AppParamsList> })
                     <RadioButton.Group onValueChange={horario => setHorario(horario)} value={horario}>
                         {itemHorario.map(item => {
                             return (
-                                <View style={style.pickerItem}>
+                                <View key={item.id} style={style.pickerItem}>
                                     <Text>{item.hora}</Text>
                                     <RadioButton value={`${item.hora}`} />
                                 </View>
@@ -88,7 +92,7 @@ const FormReservas = (props: { navigation: StackNavigationProp<AppParamsList> })
                         <Title style={style.textButton} children='Reservar' />
                     </TouchableHighlight>
                 </LinearGradient>
-            </LinearGradient >
+            </View >
         </ScrollView>
     );
 }
@@ -96,7 +100,8 @@ const FormReservas = (props: { navigation: StackNavigationProp<AppParamsList> })
 export default FormReservas;
 
 const style = StyleSheet.create({
-    input: { height: 40, width: '80%', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#fff', textAlign: 'center', color: '#000', borderRadius: 5, marginVertical: 10 },
+    //input: { height: 40, width: '80%', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#fff', textAlign: 'center', color: '#000', borderRadius: 5, marginVertical: 10 },
+    input: { width: '90%', height: 40, backgroundColor: '#fff', borderRadius: 5, fontSize: 20, padding: 5, borderWidth: 1, borderColor: '#005685' },
     pickerItem: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
     picker: { paddingHorizontal: 10, paddingVertical: 5, width: '80%', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#fff', color: '#000', borderRadius: 5, marginVertical: 10 },
     titleInput: { color: '#fff', width: '80%' },

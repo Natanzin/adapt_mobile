@@ -110,18 +110,18 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             </View>
                                         </>
                                     </TouchableHighlight>
-                                */}{/* moduleAutorization?.modules.fiscalizarCondominio &&
-                                    <TouchableHighlight onPress={() => props.navigation.navigate('FiscalCondom')} style={styles.button} underlayColor='#d0d0d0'>
-                                        <>
-                                            <View style={styles.viewButton}>
-                                                <Image source={require('../../assets/icon-ponto.png')} style={styles.imgButton} resizeMode={'contain'} />
-                                            </View>
-                                            <View style={styles.viewButton}>
-                                                <Text children='Fiscalizar Condomínio' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                            </View>
-                                        </>
-                                    </TouchableHighlight>
                                 */}
+                                {/*<TouchableHighlight onPress={() => props.navigation.navigate('FiscalCondom')} style={styles.button} underlayColor='#d0d0d0'>
+                                    <>
+                                        <View style={styles.viewButton}>
+                                            <Image source={require('../../assets/icon-ponto.png')} style={styles.imgButton} resizeMode={'contain'} />
+                                        </View>
+                                        <View style={styles.viewButton}>
+                                            <Text children='Fiscalizar Condomínio' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                        </View>
+                                    </>
+                            </TouchableHighlight>*/}
+
                                 <TouchableHighlight onPress={handleSignOut} style={[styles.button, { backgroundColor: 'rgb(251, 180, 47)' }]} underlayColor='#d0d0d0'>
                                     <>
                                         <View style={styles.viewButton}>

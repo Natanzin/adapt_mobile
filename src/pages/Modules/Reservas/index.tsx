@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { TouchableHighlight, StyleSheet, View, ScrollView, Text } from 'react-native'
+import { TouchableHighlight, StyleSheet, View, ScrollView, Text, ActivityIndicator } from 'react-native'
 import { Title, Drawer, Provider, Portal, Modal, Divider } from 'react-native-paper'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
@@ -28,6 +28,10 @@ const Reservas = (props: { navigation: StackNavigationProp<AppParamsList> & any 
         }
     }
 
+    function chamaFormulario(){
+        props.navigation.navigate('FormReservas')
+    }
+
     //executa assim que a tela é aberta
     useEffect(() => {
         //getReservas(mesAtual)
@@ -35,59 +39,67 @@ const Reservas = (props: { navigation: StackNavigationProp<AppParamsList> & any 
 
     return (
         <Provider>
-            <View style={styles.container}>
-                <Title children={`Condomínio: `} />
-                <TouchableHighlight onPress={() => { setVisible(true) }}>
-                    <Title children={`Mês: ${active}`} />
-                </TouchableHighlight>
-                <ScrollView style={styles.scroll}>
-                    {data?.map(item => {
-                        return (
-                            <View key={item.id} style={styles.cardData}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <Text children={item.dia + " "} style={styles.textDia} />
-                                    <Text children={item.mes} style={{ fontWeight: 'bold' }} />
-                                </View>
-                                {!item.cadastros ?
-                                    <View style={styles.cardSemCadastro}>
-                                        <Text children={'Nenhum evento cadastrado!'} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                    </View>
-                                    :
-                                    item.cadastros.map(reserva => (
-                                        <View key={reserva.id} style={styles.cardReserva}>
-                                            <Text children={reserva.categoria} />
-                                            <Text children={reserva.responsavel + ' - ' + reserva.apartamento + '_' + reserva.bloco} />
-                                        </View>
-                                    ))
-                                }
-                            </View>
-                        )
-                    })}
-                </ScrollView>
-                <View>
-                    <TouchableHighlight onPress={() => { setVisible(true) }} underlayColor='#45bbeb' style={styles.button} >
-                        <Text style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold', fontSize: 20, marginVertical: 3 }} children='Cadastrar novo evento!' />
-                    </TouchableHighlight>
+            {loading ?
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
+                    <ActivityIndicator size={50 || "large"} color="#005685" />
+                    <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
                 </View>
-            </View>
-            <Portal>
-                <Modal visible={visible} onDismiss={() => { setVisible(false) }}>
-                    <View style={styles.cardModal}>
-                        <Text children={'Escolha o mês que deseja visualizar!'} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} style={styles.textDia} />
-                        <Divider />
-                        <Drawer.Section>
-                            {todosMeses.map(item => (
-                                <Drawer.Item
-                                    key={item.id}
-                                    label={item.numeroMes + " - " + item.nomeMes}
-                                    active={active === `${item.numeroMes}`}
-                                    onPress={() => { setActive(`${item.numeroMes}`); setVisible(false); getReservas(item.numeroMes) }}
-                                />
-                            ))}
-                        </Drawer.Section>
+                :
+                <>
+                    <View style={styles.container}>
+                        <Title children={`Condomínio: `} />
+                        <TouchableHighlight onPress={() => { setVisible(true) }} underlayColor='transparent' >
+                            <Title children={`Mês: ${active}`} />
+                        </TouchableHighlight>
+                        <ScrollView style={styles.scroll}>
+                            {data?.map(item => {
+                                return (
+                                    <View key={item.id} style={styles.cardData}>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                            <Text children={item.dia + " "} style={styles.textDia} />
+                                            <Text children={item.mes} style={{ fontWeight: 'bold' }} />
+                                        </View>
+                                        {!item.cadastros ?
+                                            <View style={styles.cardSemCadastro}>
+                                                <Text children={'Nenhum evento cadastrado!'} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                            </View>
+                                            :
+                                            item.cadastros.map(reserva => (
+                                                <View key={reserva.id} style={styles.cardReserva}>
+                                                    <Text children={reserva.categoria} />
+                                                    <Text children={reserva.responsavel + ' - ' + reserva.apartamento + '_' + reserva.bloco} />
+                                                </View>
+                                            ))
+                                        }
+                                    </View>
+                                )
+                            })}
+                        </ScrollView>
+                        <View>
+                            <TouchableHighlight onPress={chamaFormulario} underlayColor='#45bbeb' style={styles.button} >
+                                <Text style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold', fontSize: 20, marginVertical: 3 }} children='Cadastrar novo evento!' />
+                            </TouchableHighlight>
+                        </View>
                     </View>
-                </Modal>
-            </Portal>
+                    <Portal>
+                        <Modal visible={visible} onDismiss={() => { setVisible(false) }}>
+                            <View style={styles.cardModal}>
+                                <Text children={'Escolha o mês que deseja visualizar!'} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} style={styles.textDia} />
+                                <Divider />
+                                <Drawer.Section>
+                                    {todosMeses.map(item => (
+                                        <Drawer.Item
+                                            key={item.id}
+                                            label={item.numeroMes + " - " + item.nomeMes}
+                                            active={active === `${item.numeroMes}`}
+                                            onPress={() => { setActive(`${item.numeroMes}`); setVisible(false); getReservas(item.numeroMes) }}
+                                        />
+                                    ))}
+                                </Drawer.Section>
+                            </View>
+                        </Modal>
+                    </Portal>
+                </>}
         </Provider>
     )
 }

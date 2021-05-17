@@ -4,7 +4,7 @@
   "expo": {
     "name": "ADAPT",
     "slug": "ADAPT",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -24,7 +24,6 @@
     },
     "android": {
       "permissions": [
-        "CAMERA",
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
         "NOTIFICATIONS"
