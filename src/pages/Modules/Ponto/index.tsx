@@ -21,7 +21,7 @@ const Ponto = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
             <Text style={styles.textInstructions}>3. Confira seus dados e a seguir, pressione CONFIRMAR.</Text>
             {/** Navega para a tela da câmera */}
             <Button title='Bater ponto' onPress={() =>
-                props.navigation.navigate('CameraPonto', {'usuario': JSON.stringify(usuario)})
+                props.navigation.navigate('CameraPonto')
             } />
         </View>
     )

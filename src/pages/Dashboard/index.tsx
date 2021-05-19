@@ -88,7 +88,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                     </TouchableHighlight>
                                 */}
 
-                                <TouchableHighlight onPress={() => props.navigation.navigate('Reservas')} style={styles.button} underlayColor='#d0d0d0'>
+                                {/*<TouchableHighlight onPress={() => props.navigation.navigate('Reservas')} style={styles.button} underlayColor='#d0d0d0'>
                                     <>
                                         <View style={styles.viewButton}>
                                             <Image source={require('../../assets/imagens/icone-portal-reserva.png')} style={styles.imgButton} resizeMode={'contain'} />
@@ -97,10 +97,10 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             <Text children='Reservas' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                                         </View>
                                     </>
-                                </TouchableHighlight>
+                            </TouchableHighlight>*/}
 
-                                {/* moduleAutorization?.modules.ponto &&
-                                    <TouchableHighlight onPress={() => props.navigation.navigate('Ponto')} style={styles.button} underlayColor='#d0d0d0'>
+
+                                {/*<TouchableHighlight onPress={() => props.navigation.navigate('Ponto')} style={styles.button} underlayColor='#d0d0d0'>
                                         <>
                                             <View style={styles.viewButton}>
                                                 <Image source={require('../../assets/icon-ponto.png')} style={styles.imgButton} resizeMode={'contain'} />
@@ -109,8 +109,8 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                                 <Text children='Ponto' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                                             </View>
                                         </>
-                                    </TouchableHighlight>
-                                */}
+                        </TouchableHighlight>*/}
+
                                 {/*<TouchableHighlight onPress={() => props.navigation.navigate('FiscalCondom')} style={styles.button} underlayColor='#d0d0d0'>
                                     <>
                                         <View style={styles.viewButton}>
@@ -120,7 +120,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             <Text children='Fiscalizar Condomínio' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                                         </View>
                                     </>
-                            </TouchableHighlight>*/}
+                    </TouchableHighlight>*/}
 
                                 <TouchableHighlight onPress={handleSignOut} style={[styles.button, { backgroundColor: 'rgb(251, 180, 47)' }]} underlayColor='#d0d0d0'>
                                     <>

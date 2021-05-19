@@ -4,6 +4,7 @@ import { Divider, Modal, Title } from 'react-native-paper'
 import moment from 'moment';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import empresas from './empresas.json'
+import usuarios from './usuarios.json'
 
 //tipagem dos dados requisitados do GPS do celular
 interface currentRegionData {
@@ -13,7 +14,7 @@ interface currentRegionData {
 
 const FinalizaPonto = (props: any) => {
     const foto = props?.route?.params?.foto
-    const usuario = JSON.parse(props?.route?.params?.usuario)
+    const usuario = usuarios.usuarios[0]
     const [location, setLocation] = useState<currentRegionData | null>(null)
     //recebe a hora atual do celular do usuario
     const [hora, setHora] = useState<string | null>(null)

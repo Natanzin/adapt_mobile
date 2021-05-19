@@ -13,7 +13,7 @@
       "android",
       "ios"
     ],
-    "icon":"./src/assets/icon-gradiente.png",
+    "icon": "./src/assets/icon-gradiente.png",
     "splash": {
       "image": "./src/assets/logo-login.png",
       "backgroundColor": "#FFFFFF",
@@ -23,22 +23,23 @@
       "barStyle": "light-content"
     },
     "android": {
+      "versionCode": 3,
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
         "NOTIFICATIONS"
       ],
-      "package":"com.pse2.adapt"
+      "package": "com.grupoeficaz.adapt"
     },
     "ios": {
       "userInterfaceStyle": "automatic",
-      "bundleIdentifier":"com.pse2.adapt", 
+      "bundleIdentifier": "com.grupoeficaz.adapt",
       "infoPlist": {
         "NSCameraUsageDescription": "O acesso da camera é solicitado para permitir o envio de documentos.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "A localidade será utilizada, quando concedida, para oferer produtos e serviços, bem como orientações sobre endereços físicos.",
         "NSLocationAlwaysUsageDescription": "A localidade será utilizada, quando concedida, para oferer produtos e serviços, bem como orientações sobre endereços físicos.",
         "NSLocationWhenInUseUsageDescription": "A localidade será utilizada, quando concedida, para oferer produtos e serviços, bem como orientações sobre endereços físicos.",
-    }
+      }
     }
   }
 }

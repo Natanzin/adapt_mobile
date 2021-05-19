@@ -8,7 +8,7 @@ const CameraPonto = (props: any) => {
     //Recebe a permissão de uso da câmera
     const [hasPermission, setHasPermission] = useState<null | String | boolean>(null);
     //recebe as informações do usuário
-    const usuario = JSON.parse(props?.route?.params?.usuario)
+    //const usuario = JSON.parse(props?.route?.params?.usuario)
 
     //Permissão de uso da câmera
     useEffect(() => {
@@ -33,7 +33,7 @@ const CameraPonto = (props: any) => {
     async function takePicture() {
         if (camRef) {
             const { uri } = await camRef?.current?.takePictureAsync()
-            props.navigation.navigate('FinalizaPonto', { 'foto': uri, 'usuario': JSON.stringify(usuario) })
+            props.navigation.navigate('FinalizaPonto', { 'foto': uri })
         }
     }
 
