@@ -1,37 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { Button, TouchableHighlight, Image, Text, StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native'
-import { Divider } from 'react-native-paper'
+import { Divider, Title } from 'react-native-paper'
 import { useAuth } from '../../contexts/auth'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../routes/app.routes'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import autorization from './autorization.json'
 import api from '../../services/api'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
+import Loading from '../../components/Loading'
 
 const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & any) => {
     const { signOut, user } = useAuth()
-    const autorizations = autorization?.autorization
-    const moduleAutorization = autorizations.find(obj => obj.ORG_IN_CODIGO == user?.ORG_IN_CODIGO)
-    const [organizacoes, setOrganizacoes] = useState()
-
     const [permissoes, setPermissoes] = useState(undefined)
     const [suprimento, setSuprimento] = useState(undefined)
-    const [rota, setRota] = useState(undefined)
-    const [reserva, setReserva] = useState(undefined)
 
     useEffect(() => {
         (async () => {
-            //requisição de todas as permissões
-            const { data } = await api.get(`/adapt/agente_usu_org_perfil/${user?.USU_IN_CODIGO}/org/${user?.ORG_IN_CODIGO}/resource/0`)
-            //seta todas as permissões em uma variável
-            setPermissoes(data)
-            setSuprimento(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:index:index')) /** permissão módulo Suprimento */
-            //setRota(data.find(obj => obj.OBJ_ST_RESOURCE == 'contrato:rota:index')) /** permissão módulo Rotas */
-            //setReserva(data.find(obj => obj.OBJ_ST_RESOURCE == 'contrato:contrato-reserva:index')) /** permissão módulo Reserva */
+            try {
+                const { data } = await api.get(`/adapt/agente_usu_org_perfil/${user?.USU_IN_CODIGO}/org/${user?.ORG_IN_CODIGO}/resource/0`)
+                setPermissoes(data)
+                setSuprimento(data.find(obj => obj.OBJ_ST_RESOURCE == 'suprimento:index:index')) /** permissão módulo Suprimento */
+            } catch (e) {
+                console.log(`Deu ruim na autorização: ${e}`)
+                signOut()
+            }
         })()
-        console.log(user)
-    }, [permissoes != undefined])
+    }, [])
 
 
     function handleSignOut() {
@@ -55,13 +49,8 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                             </TouchableHighlight>
                         </View>
                     </View>
-                    {permissoes === undefined ?
-                        <>
-                            <View style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                                <ActivityIndicator size={50 || "large"} color="#005685" />
-                                <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
-                            </View>
-                        </>
+                    {!permissoes ?
+                        <Loading />
                         : <>
                             <ScrollView style={{ flex: 1, width: '100%', borderTopWidth: 1, borderTopColor: '#005685' }}>
                                 {suprimento &&
@@ -75,7 +64,7 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                             </View>
                                         </>
                                     </TouchableHighlight>
-                                }{/*rota &&
+                                }{/*
                                     <TouchableHighlight onPress={() => props.navigation.navigate('Rotas')} style={styles.button} underlayColor='#d0d0d0'>
                                         <>
                                             <View style={styles.viewButton}>
@@ -88,16 +77,17 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                     </TouchableHighlight>
                                 */}
 
-                                {/*<TouchableHighlight onPress={() => props.navigation.navigate('Reservas')} style={styles.button} underlayColor='#d0d0d0'>
-                                    <>
-                                        <View style={styles.viewButton}>
-                                            <Image source={require('../../assets/imagens/icone-portal-reserva.png')} style={styles.imgButton} resizeMode={'contain'} />
-                                        </View>
-                                        <View style={styles.viewButton}>
-                                            <Text children='Reservas' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                        </View>
-                                    </>
-                            </TouchableHighlight>*/}
+                                {user?.ORG_IN_CODIGO == "2" &&
+                                    <TouchableHighlight onPress={() => props.navigation.navigate('Reservas')} style={styles.button} underlayColor='#d0d0d0'>
+                                        <>
+                                            <View style={styles.viewButton}>
+                                                <Image source={require('../../assets/imagens/icone-portal-reserva.png')} style={styles.imgButton} resizeMode={'contain'} />
+                                            </View>
+                                            <View style={styles.viewButton}>
+                                                <Text children='Reservas' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                            </View>
+                                        </>
+                                    </TouchableHighlight>}
 
 
                                 {/*<TouchableHighlight onPress={() => props.navigation.navigate('Ponto')} style={styles.button} underlayColor='#d0d0d0'>

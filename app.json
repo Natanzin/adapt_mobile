@@ -13,6 +13,7 @@
       "android",
       "ios"
     ],
+    "userInterfaceStyle": "light",
     "icon": "./src/assets/icon-gradiente.png",
     "splash": {
       "image": "./src/assets/logo-login.png",
@@ -32,7 +33,7 @@
       "package": "com.grupoeficaz.adapt"
     },
     "ios": {
-      "userInterfaceStyle": "automatic",
+      "userInterfaceStyle": "light",
       "bundleIdentifier": "com.grupoeficaz.adapt",
       "infoPlist": {
         "NSCameraUsageDescription": "O acesso da camera é solicitado para permitir o envio de documentos.",

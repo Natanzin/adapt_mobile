@@ -15,47 +15,42 @@ const Login = (props: any) => {
     const [visibleError, setVisibleError] = useState(false)
     const [visibleErrorCarac, setVisibleErrorCarac] = useState(false)
 
-    //signIn(userFake) => utilizar essa funação quando a API estiver fora do ar para fazer o login
-    const userFake = {
-        'token': 'nananananananana',
-        'user': {
-            'USU_ST_LOGIN': 'natan.farias',
-            'USU_IN_CODIGO': '1102',
-            'ORG_IN_CODIGO': '8369',
-        }
-    }
-
     const { signIn } = useAuth()
 
     async function efetuarLogin() {
-        try {
-            setLoading(true)
-            var senhaCrip = md5(senha)
-            const { data } = await api.get(`/adapt/login/${usuario}/pass/${senhaCrip}`)
-            //console.log(data)
-            var usuarioLogin = {
-                'token': 'nananananananana',
-                'user': {
-                    'USU_ST_LOGIN': `${data?.USU_ST_LOGIN}`,
-                    'USU_IN_CODIGO': `${data?.USU_IN_CODIGO}`,
-                    'ORG_IN_CODIGO': `${data?.ORG_IN_CODIGO}`
+        if (usuario != '' && senha != '') {
+            try {
+                setLoading(true)
+                var senhaCrip = md5(senha)
+                const { data } = await api.get(`/adapt/login/${usuario}/pass/${senhaCrip}`)
+                var usuarioLogin = {
+                    'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ.yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM',
+                    'user': {
+                        'USU_ST_LOGIN': `${data?.USU_ST_LOGIN}`,
+                        'USU_IN_CODIGO': `${data?.USU_IN_CODIGO}`,
+                        'ORG_IN_CODIGO': `${data?.ORG_IN_CODIGO}`
+                    }
                 }
+                if (data == 'erro') {
+                    setVisibleError(true)
+                    setSenha('')
+                    setTimeout(function () { setVisibleError(false) }, 2000)
+                } else {
+                    signIn(usuarioLogin)
+                }
+                setLoading(false)
+            } catch (e) {
+                console.log("A vaca foi pro brejo! " + e)
+                setLoading(false)
+                setVisibleErrorCarac(true)
+                setUsuario('')
+                setSenha('')
+                setTimeout(function () { setVisibleErrorCarac(false) }, 2000)
             }
-            if (data == 'erro') {
-                setVisibleError(true)
-                setUsuario(''); setSenha('')
-                setTimeout(function () { setVisibleError(false) }, 2000)
-            } else {
-                signIn(usuarioLogin)
-            }
-            setLoading(false)
-        } catch (e) {
-            console.log("A vaca foi pro brejo! " + e)
-            setLoading(false)
-            setVisibleErrorCarac(true)
-            setUsuario('')
+        } else {
+            setVisibleError(true)
             setSenha('')
-            setTimeout(function () { setVisibleErrorCarac(false) }, 2000)
+            setTimeout(function () { setVisibleError(false) }, 2000)
         }
     }
 

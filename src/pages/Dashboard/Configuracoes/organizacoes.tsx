@@ -5,6 +5,7 @@ import { AppParamsList } from '../../../routes/app.routes'
 import api from '../../../services/api'
 import { useAuth } from '../../../contexts/auth'
 import { Divider } from 'react-native-paper';
+import Loading from '../../../components/Loading';
 
 const Organizacoes = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     const { user } = useAuth()
@@ -18,12 +19,7 @@ const Organizacoes = (props: { navigation: StackNavigationProp<AppParamsList> })
     }, [])
     return (
         org === undefined ?
-            <>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <ActivityIndicator size={50 || "large"} color="#005685" />
-                    <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', color: '#005685' }} />
-                </View>
-            </>
+            <Loading />
             :
             <>
                 <ScrollView style={{ flex: 1, width: '100%' }}>
