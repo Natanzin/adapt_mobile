@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableHighlight, TextInput, Text, Image, ActivityIndicator } from 'react-native'
+import { View, TouchableHighlight, TextInput, Text, Image, ActivityIndicator, TouchableOpacity, Dimensions, StyleSheet, Keyboard } from 'react-native'
 import { Title, Portal, Modal, Provider, Dialog } from 'react-native-paper'
-import { LinearGradient } from 'expo-linear-gradient'
 import { useAuth } from '../../contexts/auth'
 import api from '../../services/api'
 import md5 from 'md5'
+import colors from '../../styles/colors'
+import { Ionicons } from '@expo/vector-icons'
+import { InputTexto, InputSenha } from '../../components/input'
 
 const Login = (props: any) => {
 
@@ -18,6 +20,7 @@ const Login = (props: any) => {
     const { signIn } = useAuth()
 
     async function efetuarLogin() {
+        Keyboard.dismiss()
         if (usuario != '' && senha != '') {
             try {
                 setLoading(true)
@@ -58,45 +61,44 @@ const Login = (props: any) => {
         <Provider>
             <View style={style.content}>
                 <View style={style.viewLogo}>
-                    <View style={[style.viewContent, { backgroundColor: '#f0f0f0' }]}>
+                    <View style={[style.viewContent, { backgroundColor: colors.default_background }]}>
                         <Image source={require('../../assets/logo-login.png')} resizeMode='contain' style={style.logo} />
                     </View>
                 </View>
-                <View style={[style.viewContent, { backgroundColor: '#005685' }]}>
-                    <View style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                        <TextInput
-                            placeholder='Usuário'
-                            style={style.input}
-                            onChangeText={text => setUsuario(text)}
+                <View style={[style.viewContent, { backgroundColor: colors.default_azul }]}>
+
+                    <View>
+                        <InputTexto
                             value={usuario}
-                            placeholderTextColor='#909090'
-                            autoCompleteType={'off'} />
-                        <TextInput
-                            placeholder='Senha'
-                            style={[style.input, { marginTop: 20 }]}
-                            onChangeText={senha => setSenha(senha)}
+                            onChangeText={text => setUsuario(text)}
+                            placeholder='Usuário'
+                        />
+                        <InputSenha
                             value={senha}
-                            secureTextEntry={true}
-                            placeholderTextColor='#909090'
-                            autoCompleteType={'off'} />
+                            onChangeText={text => setSenha(text)}
+                            placeholder='Senha'
+                        />
                     </View>
 
-                    <TouchableHighlight onPress={efetuarLogin} underlayColor='#F29F54' style={style.button}>
-                        <Text children={'Entrar'} style={style.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                    </TouchableHighlight>
-
-                    <View style={{ flexDirection: 'row' }}>
-                        <TouchableHighlight onPress={() => setVisible(true)} underlayColor='#005685' style={{ borderRadius: 4 }}>
-                            <Text children='ESQUECI MINHA SENHA' style={style.textOption} />
+                    <View style={{ alignItems: 'center' }}>
+                        <TouchableHighlight onPress={efetuarLogin} underlayColor={colors.default_laranja_claro} style={style.button}>
+                            <Text children={'Entrar'} style={style.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                         </TouchableHighlight>
-                        <Text children='||' style={style.textOption} />
-                        <TouchableHighlight onPress={() => { props.navigation.navigate('Ajuda') }} underlayColor='#005685' style={{ borderRadius: 5 }} >
-                            <Text children='AJUDA' style={style.textOption} />
-                        </TouchableHighlight>
+                        <View style={style.viewAjuda}>
+                            {/*<TouchableHighlight onPress={() => { }} underlayColor={colors.default_azul_claro} style={style.buttonAjuda} >
+                                <Text children='Esqueci Minha Senha' style={style.textAjuda} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                            </TouchableHighlight>*/}
+                            <TouchableHighlight onPress={() => { props.navigation.navigate('Ajuda') }} underlayColor={colors.default_azul_claro} style={style.buttonAjuda} >
+                                <Text children='Ajuda' style={style.textAjuda} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                            </TouchableHighlight>
+                        </View>
                     </View>
+
                     <Text children='COPYRIGHT© - TODOS OS DIREITOS RESERVADOS - 2010 PSE2' style={style.copy} />
+
                 </View>
             </View>
+            {/** MODAL RECUPERA SENHA */}
             <Portal>
                 <Modal visible={visible} onDismiss={() => setVisible(false)} >
                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -107,20 +109,20 @@ const Login = (props: any) => {
                                 style={style.inputModal}
                                 onChangeText={text => setUsuario(text)}
                                 value={usuario}
-                                placeholderTextColor='#D0D0D0'
+                                placeholderTextColor={colors.default_cinza}
                             />
                             <Text
                                 style={style.textModal}
                                 children='Obs.: Preencha o campo de login, e em seguida clique no botão "Recuperar senha", o sistema validará seus dados e encaminhará um link para o seu e-mail, ao clicar no link o sistema encaminhará para uma nova tela, onde poderá efetuar a troca de sua senha.'
                             />
-                            <LinearGradient style={style.buttonModal} colors={['#45BBEB', '#005685']} >
-                                <TouchableHighlight onPress={() => { }} underlayColor='#45BBEB' style={{ borderRadius: 5 }}>
+                            <View style={style.buttonModal} >
+                                <TouchableHighlight onPress={() => { }} underlayColor={colors.default_azul_claro} style={{ borderRadius: 5 }}>
                                     <Title
-                                        style={{ color: '#FFFFFF', textAlign: 'center', fontWeight: 'bold', fontSize: 25 }}
+                                        style={{ color: colors.default_branco, textAlign: 'center', fontWeight: 'bold', fontSize: 25 }}
                                         children='Recuperar Senha'
                                     />
                                 </TouchableHighlight>
-                            </LinearGradient>
+                            </View>
                         </View>
                     </View>
                 </Modal>
@@ -129,7 +131,7 @@ const Login = (props: any) => {
             <Portal>
                 <Dialog visible={visibleError} onDismiss={() => setVisibleError(false)} style={style.modalError}>
                     <Dialog.Content>
-                        <Text style={{ fontSize: 22, textAlign: 'center', fontWeight: 'bold', color: '#005685' }} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true}>
+                        <Text style={{ fontSize: 22, textAlign: 'center', fontWeight: 'bold', color: colors.default_azul }} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true}>
                             Usuário ou senha incorretos, favor repitir a operação.
                         </Text>
                     </Dialog.Content>
@@ -137,9 +139,9 @@ const Login = (props: any) => {
             </Portal>
             {/** erro no catch */}
             <Portal>
-                <Dialog visible={visibleErrorCarac} onDismiss={() => setVisibleErrorCarac(false)} style={[style.modalError, { borderTopColor: '#F00' }]}>
+                <Dialog visible={visibleErrorCarac} onDismiss={() => setVisibleErrorCarac(false)} style={[style.modalError, { borderTopColor: colors.color_danger }]}>
                     <Dialog.Content>
-                        <Text style={{ fontSize: 22, textAlign: 'center', fontWeight: 'bold', color: '#005685' }} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true}>
+                        <Text style={{ fontSize: 22, textAlign: 'center', fontWeight: 'bold', color: colors.default_azul }} numberOfLines={2} ellipsizeMode={'clip'} adjustsFontSizeToFit={true}>
                             O serviço está indisponível, tente novamente mais tarde!
                         </Text>
                     </Dialog.Content>
@@ -148,8 +150,8 @@ const Login = (props: any) => {
             {/** Loading */}
             <Portal>
                 <Modal visible={loading}>
-                    <ActivityIndicator size={50 || "large"} color="#fff" />
-                    <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center', color: '#FFF' }} />
+                    <ActivityIndicator size={50 || "large"} color={colors.default_branco} />
+                    <Text children={'Carregando...'} style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center', color: colors.default_branco }} />
                 </Modal>
             </Portal>
         </Provider>
@@ -160,17 +162,22 @@ export default Login;
 
 const style = StyleSheet.create({
     content: { flex: 1, alignItems: 'center', justifyContent: 'space-between' },
-    button: { backgroundColor: 'rgb(251, 180, 47)', borderWidth: 1, borderColor: '#85480f', borderRadius: 5, width: '60%', paddingVertical: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
+    button: { backgroundColor: colors.default_laranja, borderRadius: 5, width: Dimensions.get('screen').width * 0.65, marginBottom: 5, paddingVertical: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
     buttonModal: { borderWidth: 1, borderRadius: 5, paddingHorizontal: 10, paddingVertical: 5, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.22, shadowRadius: 2.22, elevation: 3 },
-    textButton: { color: '#fff', textAlign: 'center', fontWeight: 'bold', fontSize: 30 },
-    input: { height: 50, width: '80%', borderColor: '#f0f0f0', borderWidth: 1, backgroundColor: '#fff', textAlign: 'center', color: '#000', borderRadius: 5 },
-    copy: { color: '#fff', fontSize: 8, textAlign: 'center' },
-    viewLogo: { flex: 1, backgroundColor: '#e9e9e9', width: '100%', alignItems: 'center', justifyContent: 'center', shadowColor: "#000", shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.37, shadowRadius: 7.49, elevation: 12 },
+    textButton: { color: colors.default_azul, textAlign: 'center', fontWeight: 'bold', fontSize: 30 },
+    copy: { color: colors.default_branco, fontSize: 8, textAlign: 'center' },
+    viewLogo: { flex: 1, backgroundColor: colors.default_background, width: '100%', alignItems: 'center', justifyContent: 'center', shadowColor: "#000", shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.37, shadowRadius: 7.49, elevation: 12 },
     viewContent: { flex: 4, width: '100%', alignItems: 'center', justifyContent: 'space-around' },
     logo: { width: '80%', height: '80%', marginTop: 30 },
-    textOption: { color: '#fff', fontSize: 9, paddingHorizontal: 5, marginVertical: 10 },
-    viewModal: { backgroundColor: '#fff', width: '90%', borderRadius: 10, paddingVertical: 10, paddingHorizontal: 15, alignItems: 'center', justifyContent: 'center', borderTopWidth: 15, borderTopColor: '#005685' },
-    inputModal: { height: 40, width: '100%', borderColor: '#ccc', borderWidth: 1, backgroundColor: '#fff', textAlign: 'center', color: '#000', borderRadius: 5 },
+    textOption: { color: colors.default_branco, fontSize: 9, paddingHorizontal: 5, marginVertical: 10 },
+    viewModal: { backgroundColor: colors.default_branco, width: '90%', borderRadius: 10, paddingVertical: 10, paddingHorizontal: 15, alignItems: 'center', justifyContent: 'center', borderTopWidth: 15, borderTopColor: '#005685' },
+    inputModal: { height: 40, width: '100%', borderColor: colors.default_cinza, borderWidth: 1, backgroundColor: colors.default_branco, textAlign: 'center', color: '#000', borderRadius: 5 },
     textModal: { fontSize: 11, marginVertical: 10, textAlign: 'justify' },
-    modalError: { borderTopWidth: 10, borderTopColor: '#005685' }
+    modalError: { borderTopWidth: 10, borderTopColor: colors.default_azul },
+    viewAjuda: { flexDirection: 'row', width: Dimensions.get('screen').width, justifyContent: 'center', alignItems: 'center', marginTop: 10 },
+    buttonAjuda: { paddingVertical: 5, paddingHorizontal: 20, alignItems: 'center', marginBottom: 12, borderRadius: 8 },
+    textAjuda: { fontWeight: 'bold', textTransform: 'capitalize', color: colors.default_branco },
+    inputArea: { flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'center', height: 50 },
+    input: { height: 50, width: '80%', borderColor: colors.default_cinza, borderWidth: 1, backgroundColor: colors.default_branco, textAlign: 'center', color: '#000', borderRadius: 5 },
+    icon: {}
 })

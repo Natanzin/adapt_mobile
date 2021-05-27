@@ -14,7 +14,6 @@ const Organizacoes = (props: { navigation: StackNavigationProp<AppParamsList> })
         (async () => {
             const { data } = await api.get(`/adapt/agente_usuario_org/${user?.USU_IN_CODIGO}`)
             setOrg(data)
-            //console.log(data)
         })()
     }, [])
     return (

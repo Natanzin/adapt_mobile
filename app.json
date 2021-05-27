@@ -4,7 +4,7 @@
   "expo": {
     "name": "ADAPT",
     "slug": "ADAPT",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -24,7 +24,7 @@
       "barStyle": "light-content"
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",

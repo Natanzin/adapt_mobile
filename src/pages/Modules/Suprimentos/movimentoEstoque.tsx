@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, ActivityIndicator, TextInput } from 'react-native';
-import { Snackbar } from 'react-native-paper';
+import { Divider, Snackbar } from 'react-native-paper';
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import { LinearGradient } from 'expo-linear-gradient'
 import api from '../../../services/api'
 import { useAuth } from '../../../contexts/auth'
+import moment from 'moment';
 
 const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     const { user } = useAuth()
@@ -18,7 +19,7 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
     const [visible, setVisible] = useState(false)
     const [loading, setLoading] = useState(false)
     const [snackErro, setSnackErro] = useState(false)
-    const [documento, setDocumento] = useState('')
+    let documento = moment().format('DDMM')
 
     useEffect(() => {
         if (movimento < 0) {
@@ -52,16 +53,14 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
             <View style={styles.viewContainer} >
                 <View style={styles.viewContent}>
                     <Text children={itemNome} style={styles.textItem} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                    <Text children={`Quantidade: ${quantidade}`} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                    <View style={{ marginTop: 12 }}>
-                        <Text children="Nº do documento" />
-                        <TextInput
-                            placeholder='Insira o número do documento!*'
-                            value={documento}
-                            onChangeText={item => setDocumento(item)}
-                            style={styles.input}
-                            keyboardType={'number-pad'}
-                        />
+                    <Divider />
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
+                        <Text children="Quantidade: " />
+                        <Text children={quantidade} style={{ fontWeight: 'bold' }} />
+                    </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
+                        <Text children="Nº do documento: " />
+                        <Text children={documento} style={{ fontWeight: 'bold' }} />
                     </View>
                     <View style={styles.viewContador}>
                         <TouchableHighlight style={styles.iconChevron} underlayColor='#006685' onPress={() => { setMovimento(movimento - 1) }} >
