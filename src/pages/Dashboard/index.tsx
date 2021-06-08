@@ -95,38 +95,3 @@ const styles = StyleSheet.create({
     viewButton: { width: '45%', height: '100%', justifyContent: 'center', alignItems: 'center' },
     img: { width: '90%', height: 100 }
 })
-
-{/*
-                                            <TouchableHighlight onPress={() => props.navigation.navigate('Rotas')} style={styles.button} underlayColor='#d0d0d0'>
-                                                <>
-                                                    <View style={styles.viewButton}>
-                                                        <Image source={require('../../assets/icon-truck.png')} style={styles.imgButton} resizeMode={'contain'} />
-                                                    </View>
-                                                    <View style={styles.viewButton}>
-                                                        <Text children='Rotas' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                                    </View>
-                                                </>
-                                            </TouchableHighlight>
-                                        */}
-
-{/*<TouchableHighlight onPress={() => props.navigation.navigate('Ponto')} style={styles.button} underlayColor='#d0d0d0'>
-                                        <>
-                                            <View style={styles.viewButton}>
-                                                <Image source={require('../../assets/icon-ponto.png')} style={styles.imgButton} resizeMode={'contain'} />
-                                            </View>
-                                            <View style={styles.viewButton}>
-                                                <Text children='Ponto' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                            </View>
-                                        </>
-                        </TouchableHighlight>*/}
-
-{/*<TouchableHighlight onPress={() => props.navigation.navigate('FiscalCondom')} style={styles.button} underlayColor='#d0d0d0'>
-                                    <>
-                                        <View style={styles.viewButton}>
-                                            <Image source={require('../../assets/icon-ponto.png')} style={styles.imgButton} resizeMode={'contain'} />
-                                        </View>
-                                        <View style={styles.viewButton}>
-                                            <Text children='Fiscalizar Condomínio' style={styles.textButton} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
-                                        </View>
-                                    </>
-                    </TouchableHighlight>*/}

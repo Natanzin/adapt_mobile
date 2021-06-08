@@ -50,6 +50,7 @@ export const InputSenha = (props: senhaProps) => {
                     placeholder={props.placeholder}
                     autoCompleteType={'off'}
                     secureTextEntry={eye}
+                    autoCorrect={false}
                 />
                 <TouchableOpacity style={styleSenha.icon} onPress={() => setEye(!eye)}>
                     <Ionicons name={eye ? 'eye' : 'eye-off'} color={colors.default_azul} size={25} />
