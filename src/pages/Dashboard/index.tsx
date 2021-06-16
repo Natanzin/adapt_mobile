@@ -15,13 +15,20 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
     const { signOut, user } = useAuth()
     const [loading, setLoading] = useState(false)
     const [suprimento, setSuprimento] = useState(undefined)
+    const [reserva, setReserva] = useState(undefined)
 
     useEffect(() => {
         (async () => {
             try {
                 setLoading(true)
-                const { data } = await api.get(`/adapt/agente_usu_org_perfil/${user?.USU_IN_CODIGO}/org/${user?.ORG_IN_CODIGO}/resource/suprimento:index:index`)
-                setSuprimento(data)
+                const suprimento = await api.get(`/adapt/agente_usu_org_perfil/${user?.USU_IN_CODIGO}/org/${user?.ORG_IN_CODIGO}/resource/suprimento:index:index`)
+                const reserva = await api.get(`/adapt/agente_usu_org_perfil/${user?.USU_IN_CODIGO}/org/${user?.ORG_IN_CODIGO}/resource/condominio:index:painel`)
+                if (suprimento.data.length > 0) {
+                    setSuprimento(suprimento.data)
+                }
+                if (reserva.data.length > 0) {
+                    setReserva(reserva.data)
+                }
                 setLoading(false)
             } catch (e) {
                 console.log(`Deu ruim na autorização: ${e}`)
@@ -63,12 +70,12 @@ const Dashboard = (props: { navigation: StackNavigationProp<AppParamsList> } & a
                                         title='Suprimentos'
                                     />}
 
-                                {/*user?.ORG_IN_CODIGO == '2' &&
+                                {reserva &&
                                     <ButtonMenu
                                         route={() => props.navigation.navigate('Reservas')}
                                         source={require('../../assets/imagens/icone-portal-reserva.png')}
                                         title='Reservas'
-                                />*/}
+                                    />}
 
                             </ScrollView>
                         </>

@@ -19,21 +19,25 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
     const [visible, setVisible] = useState(false)
     const [loading, setLoading] = useState(false)
     const [snackErro, setSnackErro] = useState(false)
-    let documento = moment().format('DDMM')
+    let documento = moment().format('DDMMYYYY')
 
     useEffect(() => {
         if (movimento < 0) {
             setMovimento(0)
-        } else if (movimento > quantidade) {
+        } else if (movimento > quantidade && quantidade >= 0) {
             setMovimento(quantidade)
             setVisible(true)
+        } else if (quantidade < 0){
+            setMovimento(0)
+            setVisible(true)
         }
-    }, [movimento])
+    },[movimento])
 
     async function movimentar() {
         setLoading(true)
         try {
             const { data } = await api.get(`/adapt/baixa_estoque/${user?.ORG_IN_CODIGO}/usu/${user?.USU_IN_CODIGO}/ali/${almox}/iti/${itemId}/qtd/${movimento}/doc/${documento}`)
+            console.log(data)
             setLoading(false)
             props.navigation.navigate('Estoque', { 'movimento': 'ok' })
         } catch (e) {
@@ -84,7 +88,7 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
                     style={{ backgroundColor: '#005685', borderTopWidth: 8, borderTopColor: '#dd0000' }}
                 >
                     Quantidade máxima atingida!
-            </Snackbar>
+                </Snackbar>
                 <Snackbar
                     visible={snackErro}
                     onDismiss={() => { setSnackErro(!snackErro) }}
@@ -92,7 +96,7 @@ const MovimentoEstoque = (props: { navigation: StackNavigationProp<AppParamsList
                     style={{ backgroundColor: '#005685', borderTopWidth: 8, borderTopColor: '#dd0000' }}
                 >
                     Desculpe, mas não conseguimos alterar o seu estoque. Tente novamente mais tarde!
-            </Snackbar>
+                </Snackbar>
             </View>
     );
 }
