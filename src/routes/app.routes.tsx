@@ -20,6 +20,7 @@ import DetalheMapa from '../pages/Modules/Rotas/DetalheMapa'
 import Suprimentos from '../pages/Modules/Suprimentos/index'
 import Estoque from '../pages/Modules/Suprimentos/Estoque'
 import MovimentoEstoque from '../pages/Modules/Suprimentos/movimentoEstoque'
+import Transferencia from '../pages/Modules/Suprimentos/transferencia'
 
 //module Rotas
 import Ponto from '../pages/Modules/Ponto'
@@ -52,6 +53,7 @@ export type AppParamsList = {
     Suprimentos: undefined | object
     Estoque: undefined | object
     MovimentoEstoque: undefined | object
+    Transferencia: undefined | object
 
     //module ponto
     Ponto: undefined | object
@@ -87,6 +89,7 @@ const AppRoutes: React.FC = (props) => {
             <AppStack.Screen name='Suprimentos' component={Suprimentos} />
             <AppStack.Screen name='Estoque' component={Estoque} />
             <AppStack.Screen name='MovimentoEstoque' component={MovimentoEstoque} options={{ title: 'Movimentação do Estoque' }} />
+            <AppStack.Screen name='Transferencia' component={Transferencia} options={{ title: 'Transferência de Material' }} />
             {/** Módulo de Ponto */}
             <AppStack.Screen name='Ponto' component={Ponto} options={{ title: 'Bater Ponto' }} />
             <AppStack.Screen name='CameraPonto' component={CameraPonto} options={{ title: 'Bater Ponto' }} />

@@ -4,7 +4,7 @@
   "expo": {
     "name": "ADAPT",
     "slug": "ADAPT",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -24,7 +24,7 @@
       "barStyle": "light-content"
     },
     "android": {
-      "versionCode": 5,
+      "versionCode": 6,
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
@@ -33,6 +33,7 @@
       "package": "com.grupoeficaz.adapt"
     },
     "ios": {
+      "buildNumber": "1.0.0",
       "userInterfaceStyle": "light",
       "bundleIdentifier": "com.grupoeficaz.adapt",
       "infoPlist": {

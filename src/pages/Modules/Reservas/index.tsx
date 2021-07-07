@@ -1,5 +1,5 @@
 import React, { Children, useEffect, useState } from 'react'
-import { TouchableHighlight, StyleSheet, View, ScrollView, Text } from 'react-native'
+import { TouchableHighlight, StyleSheet, View, ScrollView, Text, Button } from 'react-native'
 import { Drawer, Provider, Portal, Modal, Divider } from 'react-native-paper'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppParamsList } from '../../../routes/app.routes'
@@ -30,7 +30,6 @@ const Reservas = (props: { navigation: StackNavigationProp<AppParamsList> }) => 
     const [dataReservas, setDataReservas] = useState(undefined)
     const [calendario, setCalendario] = useState(undefined)
     const [active, setActive] = useState(descMesAtual)
-    const teste = '01/06/2021';
 
     //executa assim que a tela é aberta
     useEffect(() => {
@@ -77,13 +76,14 @@ const Reservas = (props: { navigation: StackNavigationProp<AppParamsList> }) => 
                             <FontAwesome5Icon name={!visible ? 'angle-down' : 'angle-up'} size={25} color={colors.default_branco} />
                         </View>
                     </TouchableHighlight>
+                    <Button title='formulário' onPress={() => props.navigation.navigate('FormReservas')} />
                     <ScrollView>
                         {calendario?.map(item => (
                             <CardList key={item.DIA}>
                                 <View style={{ paddingTop: 5 }}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <Text children={item.DIA} style={{ fontSize: 17, fontWeight: 'bold' }} />
                                         <Text children={item.DESCR_DIA} style={{ textTransform: 'capitalize', fontWeight: 'bold', fontSize: 17 }} />
+                                        <Text children={item.DIA} style={{ fontSize: 17, fontWeight: 'bold' }} />
                                     </View>
                                     <Divider />
                                     {dataReservas?.map(res => {

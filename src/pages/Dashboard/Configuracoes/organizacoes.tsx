@@ -10,7 +10,7 @@ import CardList from '../../../components/cardList';
 
 const Organizacoes = (props: { navigation: StackNavigationProp<AppParamsList> }) => {
     const { user } = useAuth()
-    const [org, setOrg] = useState(undefined)
+    const [org, setOrg] = useState<any>(undefined)
     useEffect(() => {
         (async () => {
             try {
@@ -27,12 +27,12 @@ const Organizacoes = (props: { navigation: StackNavigationProp<AppParamsList> })
             :
             <ScrollView style={{ flex: 1, width: '100%' }}>
                 <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f0f0f0' }}>
-                    {org?.map(item => {
+                    {org?.map((item: any) => {
                         return (
                             <CardList key={item.ORG_IN_CODIGO}>
                                 <View style={styles.viewText}>
                                     <Text children={'Código:'} style={styles.textTitle} />
-                                    <Text children={item.ORG_IN_CODIGO} style={{ }} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
+                                    <Text children={item.ORG_IN_CODIGO} style={{}} numberOfLines={1} ellipsizeMode={'clip'} adjustsFontSizeToFit={true} />
                                 </View>
                                 <Divider />
                                 <View style={styles.viewText}>
@@ -60,6 +60,6 @@ const Organizacoes = (props: { navigation: StackNavigationProp<AppParamsList> })
 export default Organizacoes
 
 const styles = StyleSheet.create({
-    viewText: {flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', paddingHorizontal: 3, paddingVertical: 2},
+    viewText: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', paddingHorizontal: 3, paddingVertical: 2 },
     textTitle: { fontWeight: 'bold' },
 })
